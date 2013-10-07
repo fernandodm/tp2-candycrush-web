@@ -7,14 +7,24 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>webCrush Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
   <dependencies>
+  
+  <dependency>
+ 	 <groupId>Tp</groupId>
+  	<artifactId>CandyCrush</artifactId>
+ 	 <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
+  
   <build>
     <finalName>webCrush</finalName>
   </build>
