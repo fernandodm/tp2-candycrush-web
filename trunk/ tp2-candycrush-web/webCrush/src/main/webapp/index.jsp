@@ -2,7 +2,7 @@
 <body>
 
 <head>
-<meta http-equiv="refresh" content="0; url=inicio.jsp">
+<meta http-equiv="refresh" content="0; url=home.jsp">
 </head>
 
 </body>
