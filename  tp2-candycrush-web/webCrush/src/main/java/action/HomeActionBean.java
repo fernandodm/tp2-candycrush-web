@@ -19,9 +19,4 @@ public class HomeActionBean extends BaseActionBean{
 		this.nombreUsuario = nombreUsuario;
 	}
 	
-	@DefaultHandler
-    public Resolution view() {
-        return new ForwardResolution("/home.jsp");
-    }
-
 }
