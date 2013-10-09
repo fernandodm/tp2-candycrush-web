@@ -22,7 +22,7 @@
            	</table>
 	</stripes:form>
 	
-	<stripes:link beanclass="action.ConfigurarActionBean">
+	<stripes:link beanclass="action.ConfigurarActionBean" >
 	   	<image src="imagenes/boton_ingresar.png" alt="Configurar" />
 	</stripes:link>
 	
