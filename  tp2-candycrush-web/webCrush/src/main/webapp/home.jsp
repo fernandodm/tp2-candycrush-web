@@ -10,6 +10,7 @@
 	<i><h2> Bienvenidos al Candy Crush </h2></i>
 	 <i>El gran juego para organizar tus niveles</i>
 	<br></br>
+	
 	<stripes:form beanclass="action.HomeActionBean" focus="">
             <table width="30%">
                 <tr>
@@ -20,6 +21,6 @@
                 </tr>
            	</table>
 	</stripes:form>
-	
+	<input type="submit" name="ingresar" value="Ingresar"/>
 </body>
 </html>
