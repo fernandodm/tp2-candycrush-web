@@ -2,14 +2,14 @@
     pageEncoding="ISO-8859-1"%>
  <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
  
-
 <html>
-<body>
+<body background = "http://www.fondosok.com/walls/1734/fondo-azul-y-flores_1024x768.jpg">
 
 	<title> Ingreasar a Candy Crush </title>
 	<img src="imagenes/candycrush.jpg" >
-	<h2> Bienvenidos al Candy Crush </h2>
-	
+	<i><h2> Bienvenidos al Candy Crush </h2></i>
+	 <i>El gran juego para organizar tus niveles</i>
+	<br></br>
 	<stripes:form beanclass="action.HomeActionBean" focus="">
             <table width="30%">
                 <tr>
@@ -20,5 +20,6 @@
                 </tr>
            	</table>
 	</stripes:form>
+	
 </body>
 </html>
