@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
  
 <html>
-<body background = "http://www.fondosok.com/walls/1734/fondo-azul-y-flores_1024x768.jpg">
+<body background = "imagenes/fondoHome.jpg">
 
 	<title> Ingreasar a Candy Crush </title>
 	<img src="imagenes/candycrush.jpg" >
@@ -16,15 +16,14 @@
                 <tr>
                     <td align="right">Ingrese su nombre:</td>
                     <td align="left">
-                    	<stripes:text name="nombreUsuario" />
+                    	<stripes:text name="mundoApp.nombreUsuario" />
                     </td>
                 </tr>
            	</table>
+  
+           	<stripes:submit name="login" value="Ingresar" />
+             	
 	</stripes:form>
-	
-	<stripes:link beanclass="action.ConfigurarActionBean" >
-	   	<image src="imagenes/boton_ingresar.png" alt="Configurar" />
-	</stripes:link>
 	
 </body>
 </html>
