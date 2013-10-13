@@ -12,6 +12,7 @@ public class BaseActionBean implements ActionBean {
     }
     public void setContext(ActionBeanContext context) {
         this.context = context;
+     
     }
 
 }
