@@ -1,9 +1,13 @@
 package action;
 
+import java.util.List;
+
+import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 
@@ -11,6 +15,15 @@ import net.sourceforge.stripes.action.SessionScope;
 public class ConfigurarActionBean extends BaseActionBean {
 	
 	private MundoAppModel mundo;
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public MundoAppModel getMundo() {
 		return mundo;
@@ -31,5 +44,23 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@DefaultHandler
 	public Resolution view() {
 		return new ForwardResolution("configurar.jsp");
+	}
+	
+	@HandlesEvent("eliminar")
+    public Resolution eliminar() {
+    	this.mundo.eliminarObjetivo(this.getObjetivo());
+    	return this.view();
+    }
+	
+	public Objetivo getObjetivo(){
+		
+		List<Objetivo> objs = this.mundo.objetivosDelNivel();
+		for(Objetivo each : objs){
+			if(each.equals(objs.get(id))){
+				return each;
+			}
+		}
+		
+		throw new RuntimeException("No existe el objetivo seleccionado"); 
 	}
 }
