@@ -13,6 +13,12 @@ public class HomeActionBean extends BaseActionBean{
 	
 	private MundoAppModel mundoApp = new MundoAppModel();
 	
+	
+	public void setMundoApp(MundoAppModel mundoApp) {
+		this.mundoApp = mundoApp;
+	}
+
+
 	public MundoAppModel getMundoApp() {
 		return mundoApp;
 	}

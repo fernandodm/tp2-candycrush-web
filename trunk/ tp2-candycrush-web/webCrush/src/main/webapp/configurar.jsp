@@ -1,6 +1,15 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
+ 
+    <%-- Stripes TLD --%>
+<%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<%@ taglib prefix="sdyn" uri="http://stripes.sourceforge.net/stripes-dynattr.tld" %>
+
+<%-- JSTL TLDs --%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"      %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"       %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+    
 
 <html>
 <head>
@@ -9,12 +18,14 @@
 	 
 </head>
 <body background = "imagenes/fondoConfig.jpg">
+
+<div style ="float: left ; border-right: 1px solid #353232">
 	<h4>Bienvenido/a ${mundo.nombreUsuario} ya podes configurar tus niveles!</h4>
-	
+		
 	<stripes:form beanclass="action.ConfigurarActionBean" focus="">
+	
+	<h4>Crear nivel:</h4>
 	 <table>
-          
-       <h4>Crear nivel:</h4>
           
           <tr>
           	 <td> Nombre</td>
@@ -38,13 +49,13 @@
           	<td> Tablero: Filas </td>
           	
           	<td>
-             	<stripes:text name="nivelEnConstruccion.tablero.alto" />
+             	<stripes:text name="nivelEnConstruccion.tablero.alto" style ="width: 50px" />
            	</td>
            	
            	 <td>Columnas</td>
            	 
            	 <td>
-             	<stripes:text name="nivelEnConstruccion.tablero.ancho" />
+             	<stripes:text name="nivelEnConstruccion.tablero.ancho" style ="width: 50px"/>
            	 </td>
            	 
           </tr>
@@ -53,49 +64,63 @@
           
           	<td> Cantidad de movimiento </td>
           	<td> 
-          		<stripes:text name="nivelEnConstruccion.cantidadMovimientos" />
+          		<stripes:text name="nivelEnConstruccion.cantidadMovimientos" style ="width: 50px"/>
           	</td>
           
           	<td> Cantidad de puntos </td>
           	<td> 
-          		<stripes:text name="nivelEnConstruccion.puntajeMinimo" />
+          	
+          		<stripes:text name="nivelEnConstruccion.puntajeMinimo" style ="width: 50px"/>
           	</td>
           
           </tr>
           
       </table>
-      
+      	
        <div>
-            	<table id="main" >
-            	<br></br>
+            	<table id="main" style="margin-top: 30px">
+            	
             		<tr>
-                		<th width="40%">Objetivos</th>
+                		<th width="50%">Objetivos</th>
                 		<th width="8%">Editar</th>
                 		<th width="8%">Borrar</th>
        				</tr>
+       			    <c:set var="n" value="${0}"/>
+       				<c:forEach items="${mundo.nivelEnConstruccion.objetivos}" var="objetivo" >
        				
-       				<td width="40%"> </td>
-       				
-       				<!--Boton no terminado, falta el editar y ver lo comentado />-->
+                   	<tr>
+                    	<td width="50%">
+                    	    <span>${objetivo.descripcion}</span> 
+                	    </td> 
+            	               				       				
+       				<!--Boton no terminado, falta el editar/>-->
        				<td width="10%">
-                	    	<stripes:link beanclass="action.ConfigurarActionBean" event="editar" style="background-color:none;padding:0px;text-decoration: none;">
-                	    		<!--<stripes:param name="idSocioSeleccionado" value="${socio.id}" />-->
-            	            	<image src="imagenes/editar.png"/ width = "20" height = "20">
+                	    	<stripes:link beanclass="action.ConfigurarActionBean" event="editar">
+                	    		<stripes:param name="id" value="${n}"/>
+            	            	<image src="imagenes/editar.png" width = "20" height = "20">
             	            </stripes:link>
         	        </td>
         	        
-        	        <!--Boton no terminado, falta el eliminar y ver lo comentado />-->
         	        <td width="10%">
-                	    	<stripes:link beanclass="action.ConfigurarActionBean" event="eliminar" style="background-color:none;padding:0px;text-decoration: none;">
-                	    		<!--<stripes:param name="idSocioSeleccionado" value="${socio.id}" />-->
+                	    	<stripes:link beanclass="action.ConfigurarActionBean" event="eliminar" >
+                	    		<stripes:param name= "id" value="${n}" />
             	            	<image src="imagenes/eliminar1.PNG" width = "20" height = "20">
             	            </stripes:link>
         	        </td>
-       				
+        	        </tr>
+        	        <c:set var="n" value="${n+1}"/>
+       				</c:forEach>
        				</table>
        </div>
       
-      
 	</stripes:form>
+</div>
+
+<di>
+	 <!--ACA VA LA PARTE DE LOS NIVELES CREADOS-->
+	<h4>Niveles creados</h4>
+
+</div>
+
 </body>
 </html>
