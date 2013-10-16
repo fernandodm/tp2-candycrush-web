@@ -37,8 +37,11 @@ public class HomeActionBean extends BaseActionBean{
 	@HandlesEvent("login")
 	public Resolution login(){
 		
+		if(!this.mundoApp.getNombreUsuario().contains(" ")){
 		this.getContext().getRequest().getSession().setAttribute("mundo", mundoApp);
-		
+		}else{
+			throw new RuntimeException("usuario no valido");
+		}
 		return new ForwardResolution(ConfigurarActionBean.class);
 		
 	}	

@@ -1,7 +1,6 @@
 package action;
 
 import java.util.List;
-
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 import net.sourceforge.stripes.action.Before;
@@ -37,13 +36,22 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@Before
 	public void ejecutar(){
 		mundo = (MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundo");
-
-		
 	}
 	
 	@DefaultHandler
 	public Resolution view() {
 		return new ForwardResolution("configurar.jsp");
+	}
+	
+	@HandlesEvent("agregarGrandesExplosiones")
+	public Resolution agregarGrandesExplosiones(){
+		
+		List<String> colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+		
+		this.getContext().getRequest().getSession().setAttribute("grandes",mundo.getObjetivo());
+		this.getContext().getRequest().getSession().setAttribute("colores",colores);
+		return new ForwardResolution("grandesExplosiones.jsp");
+		
 	}
 	
 	@HandlesEvent("eliminar")

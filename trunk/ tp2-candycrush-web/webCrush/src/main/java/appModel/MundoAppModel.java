@@ -15,6 +15,8 @@ public class MundoAppModel {
 	private Mundo mundo = new Mundo();
 	private Nivel nivelEnConstruccion = new Nivel();
 	private Dificultad dificultad;
+	private Objetivo objetivo;
+	
 	
 	public Nivel getNivelEnConstruccion() {
 		return nivelEnConstruccion;
@@ -46,6 +48,12 @@ public class MundoAppModel {
 	public List<Objetivo> objetivosDelNivel() {
 		
 		return nivelEnConstruccion.getObjetivos();
+	}
+	public Objetivo getObjetivo() {
+		return objetivo;
+	}
+	public void setObjetivo(Objetivo objetivo) {
+		this.objetivo = objetivo;
 	}
 	
 }
