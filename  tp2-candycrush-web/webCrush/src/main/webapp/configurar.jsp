@@ -78,7 +78,7 @@
       </table>
       	
        <div>
-            	<table id="main" style="margin-top: 30px">
+            	<table style="margin-top: 30px">
             	
             		<tr>
                 		<th width="50%">Objetivos</th>
@@ -111,6 +111,8 @@
         	        <c:set var="n" value="${n+1}"/>
        				</c:forEach>
        				</table>
+       				<stripes:submit name="agregarExpPorColor" value="Nuevo Explosiones por color" />
+       				<stripes:submit name="agregarGrandesExplosiones" value="Nuevo Grandes explosiones" />
        </div>
       
 	</stripes:form>
