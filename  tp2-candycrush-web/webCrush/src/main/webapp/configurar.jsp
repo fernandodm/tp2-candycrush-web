@@ -40,9 +40,9 @@
 				<tr>
 					<td>Dificultad</td>
 					<td><stripes:select name="dificultad">
-							<option value="dificultad.FACIL">Facil</option>
-							<option value="dificultad.NORMAL">Normal</option>
-							<option value="dificultad.DIFICIL">Dificil</option>
+							<option value="FACIL">Facil</option>
+							<option value="NORMAL">Normal</option>
+							<option value="DIFICIL">Dificil</option>
 						</stripes:select></td>
 				</tr>
 
