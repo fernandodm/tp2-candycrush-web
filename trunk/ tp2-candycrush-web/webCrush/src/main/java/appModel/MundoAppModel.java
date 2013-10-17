@@ -1,8 +1,7 @@
 package appModel;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import net.sourceforge.stripes.validation.Validate;
 
 import Tp.CandyCrush.Dificultad;
 import Tp.CandyCrush.Mundo;
@@ -14,10 +13,16 @@ public class MundoAppModel {
 	private String nombreUsuario;
 	private Mundo mundo = new Mundo();
 	private Nivel nivelEnConstruccion = new Nivel();
+	private ArrayList<Nivel> niveles =  new ArrayList<Nivel>();
 	private Dificultad dificultad;
 	private Objetivo objetivo;
 	
-	
+	public ArrayList<Nivel> getNiveles() {
+		return niveles;
+	}
+	public void setNiveles(ArrayList<Nivel> niveles) {
+		this.niveles = niveles;
+	}
 	public Nivel getNivelEnConstruccion() {
 		return nivelEnConstruccion;
 	}
@@ -54,6 +59,11 @@ public class MundoAppModel {
 	}
 	public void setObjetivo(Objetivo objetivo) {
 		this.objetivo = objetivo;
+	}
+	
+	
+	public void agregarNivel(Nivel niv){
+		this.mundo.getNiveles().add(niv);
 	}
 	
 }
