@@ -1,6 +1,9 @@
 package action;
 
 import java.util.List;
+
+import Tp.CandyCrush.Dificultad;
+import Tp.CandyCrush.Nivel;
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 import net.sourceforge.stripes.action.Before;
@@ -9,13 +12,23 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
+import net.sourceforge.stripes.controller.LifecycleStage;
 
 @SessionScope
 public class ConfigurarActionBean extends BaseActionBean {
 	
-	private MundoAppModel mundo;
+	private MundoAppModel mundo = new MundoAppModel();
 	private Integer id;
+	private String dificultad;
 	
+	public String getDificultad() {
+		return dificultad;
+	}
+
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -33,7 +46,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 
 	
-	@Before
+	@Before(stages=LifecycleStage.BindingAndValidation)
 	public void ejecutar(){
 		mundo = (MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundo");
 	}
@@ -42,10 +55,21 @@ public class ConfigurarActionBean extends BaseActionBean {
 	public Resolution view() {
 		return new ForwardResolution("configurar.jsp");
 	}
+
+	
+	@HandlesEvent("agregarDificultad")
+	public Resolution agregarDificultad(){
+
+		if(dificultad.equals("Facil")){
+			
+		}
+		
+		return new ForwardResolution("grandesExplosiones.jsp");
+	}
 	
 	@HandlesEvent("agregarGrandesExplosiones")
 	public Resolution agregarGrandesExplosiones(){
-		
+		System.out.println(mundo.getNivelEnConstruccion().getDificultad() + "eeeeeeeeeeeeeeeeeeeeee");
 		List<String> colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
 		
 		this.getContext().getRequest().getSession().setAttribute("grandes",mundo.getObjetivo());
@@ -59,7 +83,7 @@ public class ConfigurarActionBean extends BaseActionBean {
     	this.mundo.eliminarObjetivo(this.getObjetivo());
     	return this.view();
     }
-	
+		
 	public Objetivo getObjetivo(){
 		
 		List<Objetivo> objs = this.mundo.objetivosDelNivel();
@@ -71,4 +95,15 @@ public class ConfigurarActionBean extends BaseActionBean {
 		
 		throw new RuntimeException("No existe el objetivo seleccionado"); 
 	}
+	
+	
+	@HandlesEvent("agregarNivel")
+	public Resolution agregarNivel(){
+		
+		this.mundo.getNiveles().add(this.mundo.getNivelEnConstruccion());
+		mundo.setNivelEnConstruccion(new Nivel());
+		return this.view();
+		
+	}
+	
 }
