@@ -1,8 +1,10 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Tp.CandyCrush.Dificultad;
+import Tp.CandyCrush.GrandesExplosiones;
 import Tp.CandyCrush.Nivel;
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
@@ -57,24 +59,27 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 
 	
-	@HandlesEvent("agregarDificultad")
-	public Resolution agregarDificultad(){
-
-		if(dificultad.equals("Facil")){
-			
-		}
-		
-		return new ForwardResolution("grandesExplosiones.jsp");
-	}
-	
 	@HandlesEvent("agregarGrandesExplosiones")
 	public Resolution agregarGrandesExplosiones(){
-		System.out.println(mundo.getNivelEnConstruccion().getDificultad() + "eeeeeeeeeeeeeeeeeeeeee");
-		List<String> colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
 		
-		this.getContext().getRequest().getSession().setAttribute("grandes",mundo.getObjetivo());
+		
+		List<String> colores = new ArrayList<String>();
+		if(dificultad.equals("FACIL")){
+			mundo.getNivelEnConstruccion().setDificultad(Dificultad.FACIL);
+			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+		}
+		if(dificultad.equals("NORMAL")){
+			mundo.getNivelEnConstruccion().setDificultad(Dificultad.NORMAL);
+			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+		}	
+		if(dificultad.equals("DIFICIL")){
+			mundo.getNivelEnConstruccion().setDificultad(Dificultad.DIFICIL);
+			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+		}	
+		
+		this.getContext().getRequest().getSession().setAttribute("obj",mundo.getObjetivo());
 		this.getContext().getRequest().getSession().setAttribute("colores",colores);
-		return new ForwardResolution("grandesExplosiones.jsp");
+		return new ForwardResolution(GrandesExplosionesActionBean.class);
 		
 	}
 	
