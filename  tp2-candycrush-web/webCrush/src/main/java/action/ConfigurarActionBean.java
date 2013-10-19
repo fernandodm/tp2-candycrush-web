@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Tp.CandyCrush.Dificultad;
-import Tp.CandyCrush.GrandesExplosiones;
 import Tp.CandyCrush.Nivel;
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
@@ -57,35 +56,48 @@ public class ConfigurarActionBean extends BaseActionBean {
 	public Resolution view() {
 		return new ForwardResolution("configurar.jsp");
 	}
-
+	
+	
+	@HandlesEvent("agregarExpPorColor")
+	public Resolution agregarExpPorColor(){
+		
+		agregarDificultad();	
+		
+		return new ForwardResolution(ExplosionesPorColorActionBean.class);
+	}
 	
 	@HandlesEvent("agregarGrandesExplosiones")
 	public Resolution agregarGrandesExplosiones(){
 		
+		agregarDificultad();	
 		
+		return new ForwardResolution(GrandesExplosionesActionBean.class);
+	}
+	
+	public void setearDificultad(Dificultad dif){
 		List<String> colores = new ArrayList<String>();
+		mundo.getNivelEnConstruccion().setDificultad(dif);
+		colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+		this.getContext().getRequest().getSession().setAttribute("colores",colores);
+	}
+	
+	public void agregarDificultad() {
 		if(dificultad.equals("FACIL")){
-			mundo.getNivelEnConstruccion().setDificultad(Dificultad.FACIL);
-			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+			setearDificultad(Dificultad.FACIL);
 		}
 		if(dificultad.equals("NORMAL")){
-			mundo.getNivelEnConstruccion().setDificultad(Dificultad.NORMAL);
-			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
+			setearDificultad(Dificultad.NORMAL);
 		}	
 		if(dificultad.equals("DIFICIL")){
-			mundo.getNivelEnConstruccion().setDificultad(Dificultad.DIFICIL);
-			colores = mundo.getNivelEnConstruccion().getDificultad().getColores();
-		}	
-		
-		this.getContext().getRequest().getSession().setAttribute("obj",mundo.getObjetivo());
-		this.getContext().getRequest().getSession().setAttribute("colores",colores);
-		return new ForwardResolution(GrandesExplosionesActionBean.class);
-		
+			setearDificultad(Dificultad.DIFICIL);
+		}
 	}
+
 	
 	@HandlesEvent("eliminar")
     public Resolution eliminar() {
     	this.mundo.eliminarObjetivo(this.getObjetivo());
+  
     	return this.view();
     }
 		
@@ -94,6 +106,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 		List<Objetivo> objs = this.mundo.objetivosDelNivel();
 		for(Objetivo each : objs){
 			if(each.equals(objs.get(id))){
+				id = id - 1;
 				return each;
 			}
 		}

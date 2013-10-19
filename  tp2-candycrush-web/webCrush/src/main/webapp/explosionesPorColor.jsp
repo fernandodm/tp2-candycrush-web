@@ -16,13 +16,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Nuevo Objetivo: Grandes explosiones</title>
+<title>Nuevo Objetivo: Explosiones por color</title>
 </head>
 <body background="imagenes/fondoObjetivos.jpg">
 
 
 	<table>
-		<stripes:form beanclass="action.GrandesExplosionesActionBean" focus="">
+		<stripes:form beanclass="action.ExplosionesPorColorActionBean" focus="">
 
 
 			<tr>
@@ -40,7 +40,7 @@
 			<tr>
 				<td>Cantidad</td>
 
-				<td><stripes:select name="objetivo.cantidadGrandesExplosiones">
+				<td><stripes:select name="objetivo.cantidad">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
