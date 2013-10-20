@@ -11,8 +11,6 @@ import net.sourceforge.stripes.controller.LifecycleStage;
 @SessionScope
 public class ExplosionesPorColorActionBean extends ObjetivoActionBean{
 	
-	//private ExplosionesPorColor objetivo;
-	
 	@Before(stages=LifecycleStage.BindingAndValidation)
 	public void iniciarObjetivo(){
 		super.setObjetivo(new ExplosionesPorColor());
