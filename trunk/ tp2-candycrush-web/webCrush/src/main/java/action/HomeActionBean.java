@@ -14,8 +14,7 @@ import net.sourceforge.stripes.validation.ValidationErrors;
 public class HomeActionBean extends BaseActionBean{
 	
 	private MundoAppModel mundoApp = new MundoAppModel();
-	
-	
+
 	public void setMundoApp(MundoAppModel mundoApp) {
 		this.mundoApp = mundoApp;
 	}
@@ -29,26 +28,21 @@ public class HomeActionBean extends BaseActionBean{
 	public void setMundo(MundoAppModel mundo) {
 		this.mundoApp = mundo;
 	}
-
-
-//	@DefaultHandler
-//	public Resolution view() {
-//		return new ForwardResolution("home.jsp");
-//	}
 	
 	@HandlesEvent("login")
 	public Resolution login(){
-		
-		if(this.mundoApp.getNombreUsuario()!= null){
+
+		if(this.mundoApp.getNombreUsuario()!= null && !this.mundoApp.getNombreUsuario().contains(" ")){
+
 		this.getContext().getRequest().getSession().setAttribute("mundo", mundoApp);
-		}else{
+		}
+		else{
 			ValidationErrors errors = new ValidationErrors();
-            errors.add("mundoApp.nombreUsuario", new SimpleError("Ingrese nombre de usuario"));
+            errors.add("mundoApp.nombreUsuario", new SimpleError("Ingrese un nombre de usuario válido sin dejar espacios"));
             
             this.getContext().setValidationErrors(errors);
             return new ForwardResolution("/home.jsp");
 		}
 		return new ForwardResolution(ConfigurarActionBean.class);
-		
 	}	
 }
