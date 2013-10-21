@@ -18,7 +18,7 @@ import net.sourceforge.stripes.controller.LifecycleStage;
 @SessionScope
 public class ConfigurarActionBean extends BaseActionBean {
 	
-	private MundoAppModel mundo = new MundoAppModel();
+	private MundoAppModel mundo;
 	private Integer id;
 	private String dificultad;
 	
@@ -50,10 +50,15 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@Before(stages=LifecycleStage.BindingAndValidation)
 	public void ejecutar(){
 		mundo = (MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundo");
+		for(Objetivo x : mundo.getNivelEnConstruccion().getObjetivos()){
+			System.out.println(x);
+		}
+		System.out.println("-------------------------------");
 	}
 	
 	@DefaultHandler
 	public Resolution view() {
+		
 		return new ForwardResolution("configurar.jsp");
 	}
 	
@@ -97,21 +102,14 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@HandlesEvent("eliminar")
     public Resolution eliminar() {
     	this.mundo.eliminarObjetivo(this.getObjetivo());
-  
+    	
     	return this.view();
     }
 		
 	public Objetivo getObjetivo(){
 		
-		List<Objetivo> objs = this.mundo.objetivosDelNivel();
-		for(Objetivo each : objs){
-			if(each.equals(objs.get(id))){
-				id = id - 1;
-				return each;
-			}
-		}
+		return this.mundo.objetivosDelNivel().get(id);
 		
-		throw new RuntimeException("No existe el objetivo seleccionado"); 
 	}
 	
 	

@@ -1,17 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%-- Stripes TLD --%>
-<%@ taglib prefix="stripes"
-	uri="http://stripes.sourceforge.net/stripes.tld"%>
-<%@ taglib prefix="sdyn"
-	uri="http://stripes.sourceforge.net/stripes-dynattr.tld"%>
-
-<%-- JSTL TLDs --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="/taglibs.jsp" %>
 
 
 <html>
@@ -75,7 +62,7 @@
 			</table>
 
 			<div>
-				<table style="margin-top: 30px">
+				<table id="main" style="margin-top: 30px">
 
 					<tr>
 						<th width="50%">Objetivos</th>
@@ -83,6 +70,7 @@
 						<th width="8%">Borrar</th>
 					</tr>
 					<c:set var="n" value="${0}" />
+					
 					<c:forEach items="${mundo.nivelEnConstruccion.objetivos}"
 						var="objetivo">
 
