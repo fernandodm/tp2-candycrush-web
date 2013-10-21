@@ -79,7 +79,7 @@
 
 							<!--Boton no terminado, falta el editar/>-->
 							<td width="10%"><stripes:link
-									beanclass="action.ConfigurarActionBean" event="editar">
+									beanclass="action.ConfigurarActionBean" event="editarObjetivo">
 									<stripes:param name="id" value="${n}" />
 									<image src="imagenes/editar.png" width="20" height="20">
 								</stripes:link></td>

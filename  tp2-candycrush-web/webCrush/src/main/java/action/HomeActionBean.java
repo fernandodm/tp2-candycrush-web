@@ -6,6 +6,8 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
+import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 
 @SessionScope
@@ -37,10 +39,14 @@ public class HomeActionBean extends BaseActionBean{
 	@HandlesEvent("login")
 	public Resolution login(){
 		
-		if(!this.mundoApp.getNombreUsuario().contains(" ")){
+		if(this.mundoApp.getNombreUsuario()!= null){
 		this.getContext().getRequest().getSession().setAttribute("mundo", mundoApp);
 		}else{
-			throw new RuntimeException("usuario no valido");
+			ValidationErrors errors = new ValidationErrors();
+            errors.add("mundoApp.nombreUsuario", new SimpleError("Ingrese nombre de usuario"));
+            
+            this.getContext().setValidationErrors(errors);
+            return new ForwardResolution("/home.jsp");
 		}
 		return new ForwardResolution(ConfigurarActionBean.class);
 		
