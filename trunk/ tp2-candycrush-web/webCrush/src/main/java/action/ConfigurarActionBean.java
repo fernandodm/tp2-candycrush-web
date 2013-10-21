@@ -50,10 +50,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@Before(stages=LifecycleStage.BindingAndValidation)
 	public void ejecutar(){
 		mundo = (MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundo");
-		for(Objetivo x : mundo.getNivelEnConstruccion().getObjetivos()){
-			System.out.println(x);
-		}
-		System.out.println("-------------------------------");
+
 	}
 	
 	@DefaultHandler
