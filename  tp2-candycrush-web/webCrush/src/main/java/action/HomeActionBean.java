@@ -31,7 +31,7 @@ public class HomeActionBean extends BaseActionBean{
 	
 	@HandlesEvent("login")
 	public Resolution login(){
-		//borra este comentario
+		
 		if(this.mundoApp.getNombreUsuario()!= null && !this.mundoApp.getNombreUsuario().contains(" ")){
 
 		this.getContext().getRequest().getSession().setAttribute("mundo", mundoApp);
