@@ -25,8 +25,8 @@
 		</table>
 
 		<stripes:submit name="login" value="Ingresar" />
-
+		
 	</stripes:form>
-
+	
 </body>
 </html>
