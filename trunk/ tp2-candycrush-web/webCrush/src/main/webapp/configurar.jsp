@@ -1,27 +1,28 @@
-<%@ include file="/taglibs.jsp"%>
 
+<%@ include file="/taglibs.jsp" %>
 
 <html>
 <head>
 
 <title>Configurar niveles</title>
-<link rel="stylesheet" type="text/css" href="css/cs_basic.css">
+
 </head>
 <body background="imagenes/fondoConfig.jpg">
 
-	<div style="float: left; border-right: 1px solid #353232;width: 50%" >
+	<div style="float: left; border-right: 1px solid #353232">
 		<h4>Bienvenido/a ${mundo.nombreUsuario} ya podes configurar tus
 			niveles!</h4>
 
 		<stripes:form beanclass="action.ConfigurarActionBean" focus="">
-
+		<stripes:errors globalErrorsOnly="true" />
 			<h4>Crear nivel:</h4>
 			<table>
-
+	
 				<tr>
 					<td>Nombre</td>
 					<td><stripes:text name="mundo.nivelEnConstruccion.nombre" />
 					</td>
+					<stripes:errors field="mundo.nivelEnConstruccion.nombre" />	
 				</tr>
 
 				<tr>
@@ -38,11 +39,13 @@
 
 					<td><stripes:text name="mundo.nivelEnConstruccion.tablero.alto"
 							style="width: 50px" /></td>
-
+					<stripes:errors field="mundo.nivelEnConstruccion.tablero.alto" />	
+							
 					<td>Columnas</td>
 
 					<td><stripes:text name="mundo.nivelEnConstruccion.tablero.ancho"
 							style="width: 50px" /></td>
+					 	<stripes:errors field="mundo.nivelEnConstruccion.tablero.ancho" /> 
 
 				</tr>
 
@@ -52,66 +55,55 @@
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.cantidadMovimientos"
 							style="width: 50px" /></td>
+				 		<stripes:errors field="mundo.nivelEnConstruccion.cantidadMovimientos" /> 
 
 					<td>Cantidad de puntos</td>
 					<td><stripes:text name="mundo.nivelEnConstruccion.puntajeMinimo"
 							style="width: 50px" /></td>
-
+						<stripes:errors field="mundo.nivelEnConstruccion.puntajeMinimo" /> 
 				</tr>
-
+			
 			</table>
 
-			<div class="datagrid" style="margin-top: 30px">
-				
-				<table >
-					<thead>
+			<div>
+				<table id="main" style="margin-top: 30px">
+
+					<tr>
+						<th width="50%">Objetivos</th>
+						<th width="8%">Editar</th>
+						<th width="8%">Borrar</th>
+					</tr>
+					<c:set var="n" value="${0}" />
+					
+					<c:forEach items="${mundo.nivelEnConstruccion.objetivos}"
+						var="objetivo">
+
 						<tr>
-							<th width="50%">Objetivos</th>
-							<th width="8%">Editar</th>
-							<th width="8%">Borrar</th>
+							<td width="50%"><span>${objetivo.descripcion}</span></td>
+
+							<!--Boton no terminado, falta el editar/>-->
+							<td width="10%"><stripes:link
+									beanclass="action.ConfigurarActionBean" event="editarObjetivo">
+									<stripes:param name="id" value="${n}" />
+									<image src="imagenes/editar.png" width="20" height="20">
+								</stripes:link></td>
+
+							<td width="10%"><stripes:link
+									beanclass="action.ConfigurarActionBean" event="eliminar">
+									<stripes:param name="id" value="${n}" />
+									<image src="imagenes/eliminar1.PNG" width="20" height="20">
+								</stripes:link></td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:set var="n" value="${0}" />
-
-						<c:forEach items="${mundo.nivelEnConstruccion.objetivos}"
-							var="objetivo">
-
-							<tr class="alt">
-								<td width="50%"><span>${objetivo.descripcion}</span></td>
-
-								<!--Boton no terminado, falta el editar/>-->
-								<td width="10%"><stripes:link
-										beanclass="action.ConfigurarActionBean" event="editarObjetivo">
-										<stripes:param name="id" value="${n}" />
-										<image src="imagenes/editar.png" width="20" height="20">
-									</stripes:link></td>
-
-								<td width="10%"><stripes:link 
-										beanclass="action.ConfigurarActionBean" event="eliminar">
-										<stripes:param name="id" value="${n}" />
-										<image src="imagenes/eliminar1.PNG" width="20" height="20">
-									</stripes:link></td>
-							</tr>
-							<c:set var="n" value="${n+1}" />
-						</c:forEach>
-					</tbody>
+						<c:set var="n" value="${n+1}" />
+					</c:forEach>
 				</table>
-				<table>
-					<tfoot>
-						<tr>
-							<td colspan="4"><div id="paging">
-									<stripes:submit name="agregarExpPorColor"
-										value="Nuevo Explosiones por color" class="colorBoton"/>
-
-									<stripes:submit name="agregarGrandesExplosiones"
-										value="Nuevo Grandes explosiones" class="colorBoton"/>
-								</div>
-						</tr>
-					</tfoot>
-				</table>
+				<stripes:submit name="agregarExpPorColor"
+					value="Nuevo Explosiones por color" />
+				<stripes:submit name="agregarGrandesExplosiones"
+					value="Nuevo Grandes explosiones" />
 			</div>
-			<stripes:submit name="agregarNivel" value="Crear nivel re loco" class="colorBoton"/>
+			<stripes:submit name="agregarNivel" value="Crear nivel" /> 
+		  	<stripes:errors field="mundo.nivelEnConstruccion.objetivosDelNivel" /> 
 		</stripes:form>
 
 
