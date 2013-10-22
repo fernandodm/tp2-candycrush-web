@@ -1,227 +1,129 @@
 /* CSS Document */
 /* These are the basic UCL-CS styles.  */
 
-/* These styles apply to the whole page */   
-body {
-    background-color: #FFFFFF;
-    color: #000000;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size 100%;
-}
-
-a:link {
-    color: #000000
-}
-a:visited {
-    color: #000000
-}
-a:hover {
-    color: #606060
-}
-a:active {
-    color: #000000
-}
-
-p {
-    font-size: 100%;
-}	
-
-body>table, body td>table, td>*>table {
-	font-size: 9pt;
-}	
-
-body table {
-	font-size: small;
-        border: 3;
-}
-		
-td table { 
-	font-size: 100%;
-}
-
-table { 
-	font-weight: normal;
-	color: #000000;
-	caption-side: bottom;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
-	border-width: 2px;
-	border-spacing: 0px 0px;
+/* These styles apply to the whole page */
+.datagrid table {
 	border-collapse: collapse;
-}
-th {
-        color: #FFFFFF;
-	border-width: 1px;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
-
-}
-tr {
-	border-width: 0px;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
+	text-align: left;text-align: left;
+	width: 100%;
 }
 
-td {
-	border-width: 0px;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
+.datagrid {
+	font: normal 12px/150% Arial, Helvetica, sans-serif;
+	background: #FFFFFF;
+	overflow: hidden;
+	border: 1px solid #006699;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	width: 95%;
 }
 
-h1 {
-	font-size: 1.5em;
-	font-weight: bold;
-	margin-bottom: 4pt;
-	margin-top: 8pt;
-}
-h2 {
-	font-size: 1.3em;
-	font-weight: bold;
-}
-
-h3 {
-	font-size: 1em;
-	font-weight: normal;
-}
-h4 {
-	font-size: 1em;
-	font-weight: normal;
-	font-style: italic;
-}
-
-.heavy {
-	font-weight: bold;
-}
+.datagrid table td,.datagrid table th {
+	padding: 3px 10px;
 	
-/* These styles affect the main editable region of the document 
-   which has the identifier "main" */
+}
 
+.datagrid table thead th {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #006699
+		), color-stop(1, #00557F));
+	background: -moz-linear-gradient(center top, #006699 5%, #00557F 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699',
+		endColorstr='#00557F');
+	background-color: #006699;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	border-left: 1px solid #0070A8;
+	
+}
 
-*#main table { 
+.datagrid table thead th:first-child {
+	border: none;
+	
+}
+
+.datagrid table tbody td {
+	color: #00496B;
+	border-left: 1px solid #E1EEF4;
+	font-size: 12px;
 	font-weight: normal;
-	color: #000000;
-	caption-side: bottom;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
-        border-bottom: 2px;
-        border-bottom-style: groove;
-	border-width: 2px;
-	border-spacing: 0px 0px;
-	border-collapse: collapse;
+	
 }
 
-*#main th { 
-        background-color: SteelBlue;        
-	border-width: 0px;
-	text-align: center; 
-        font-weight: bold;
-	vertical-align: middle;
-        padding-left: 1ex;
-	padding-right: 1ex;
-	height: 3ex;
+.datagrid table tbody .alt td {
+	background: #E1EEF4;
+	color: #00496B;
+	
 }
 
-*#main td {
-/*	border-width: 0px; */
-/*    text-align: left; */
-        font-weight: normal;
-	vertical-align: top;
-        padding-left: 0ex;
-	padding-right: 1ex;
-	padding-bottom: 0ex;
-	padding-top: 0ex;
-        border-bottom: 1px;
-        border-bottom-style: groove;
+.datagrid table tbody td:first-child {
+	border-left: none;
+	
 }
 
-
-*#gris table { 
-	font-weight: normal;
-	color: #000000;
-	caption-side: bottom;
-	padding-bottom: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
-        border-bottom: 2px;
-        border-bottom-style: groove;
-	border-width: 2px;
-	border-spacing: 0px 0px;
-	border-collapse: collapse;
+.datagrid table tbody tr:last-child td {
+	border-bottom: none;
+	
 }
 
-*#gris th { 
-        background-color: #6699FF;        
-	border-width: 0px;
-	text-align: center; 
-        font-weight: bold;
-	vertical-align: middle;
-        padding-left: 1ex;
-	padding-right: 1ex;
-	height: 3ex;
+.datagrid table tfoot td div {
+	border-top: 1px solid #006699;
+	background: #E1EEF4;
+	
 }
 
-*#gris td {
-/*	border-width: 0px; */
-/*    text-align: left; */
-        font-weight: normal;
-	vertical-align: top;
-        padding-left: 0ex;
-	padding-right: 1ex;
-	padding-bottom: 0ex;
-	padding-top: 0ex;
-        border-bottom: 1px;
-        border-bottom-style: groove;
+.datagrid table tfoot td {
+	padding: 0;
+	font-size: 12px
+
 }
 
-*#main table.grey th, *#main tr.grey th, *#main th.grey {
-	border-style: solid;
-	border-width: 1px;
-	border-color: #FFFFFF;
+.datagrid table tfoot td div {
+	padding: 2px;
+	
+}
+
+.datagrid table tfoot td ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+}
+
+.datagrid table tfoot  li {
+	display: inline;
+}
+
+.datagrid table tfoot li a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 2px 8px;
+	margin: 1px;
 	color: #FFFFFF;
-    background-color: #000000;
+	border: 1px solid #006699;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #006699
+		), color-stop(1, #00557F));
+	background: -moz-linear-gradient(center top, #006699 5%, #00557F 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699',
+		endColorstr='#00557F');
+	background-color: #006699;
 }
-*#main table.grey td, *#main tr.grey td, *#main td.grey {
-	border-style: solid;
-	border-width: 1px;
-	border-color: #FFFFFF;
-    background-color: #E0E0E0;
-	padding-bottom: 0ex;
-}
-*#main caption {
-    font-style: italic;
-}	
-*#main li ol {
-    list-style-type: lower-alpha; 
-}		
-*#main li ol li ol {
-    list-style-type: lower-roman; 
-}
-*#main pre {
-	font-family: Courier New, Courier, mono;
-	font-size: 1.2em
-}
-.fixed {
-	font-family: Courier New, Courier, mono;
-	font-size: 1.2em
-}
-.centred {
-    text-align: center;
-}	
 
-/* These styles are used when a page is printed. 
-   They suppress the top banner and, if present, the poster 
-   left and right hand columns. They also ensure that the
-   remaining text occupies the full width of the page.
-*/
-
-@media print {
-*#left, *#right,  
-*#poster, *#poster_spacer, *#bottom_line, *#rollovers {
-	display: none;
+.datagrid table tfoot ul.active,.datagrid table tfoot ul a:hover {
+	text-decoration: none;
+	border-color: #006699;
+	color: #FFFFFF;
+	background: none;
+	background-color: #00557F;
 }
+
+.colorBoton{
+	color:#FFFFFF; 
+	border-color: #006699;
+	background:#00557F
+	
 }
