@@ -59,4 +59,12 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
 		return new ForwardResolution(ConfigurarActionBean.class);
 	}
 	
+	@HandlesEvent("cancelarObjetivo")
+	public Resolution cancelarObjetivo(){
+		
+		setObjetivo(null);
+				
+		return new ForwardResolution(ConfigurarActionBean.class);
+	}
+	
 }

@@ -25,6 +25,7 @@
 		</stripes:layout-component>
 		<tr>
 			<td><stripes:submit name="agregarObjetivo" value="Agregar" /></td>
+			<td><stripes:submit name="cancelarObjetivo" value="Cancelar" /></td>
 		</tr>
 
 	</table>

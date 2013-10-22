@@ -109,7 +109,16 @@ public class ConfigurarActionBean extends BaseActionBean {
 		return this.mundo.objetivosDelNivel().get(id); 
 		
 	}
-
+	
+	@HandlesEvent("editarObjetivo")
+	public Resolution editarObjetivo(){
+		
+		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
+		
+		return new ForwardResolution(EditarGrandesExplosionesActionBean.class);
+		
+	}
+	
 	@HandlesEvent("agregarNivel")
 	public Resolution agregarNivel(){
 			
