@@ -22,8 +22,10 @@
 				</tr>
 				<tr>
 					<td>Dificultad</td>
+
 					<stripes:errors field="dificultad" />
 					<td><stripes:select name="dificultad" style="border: 0 none;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;">
+
 							<option value="${mundo.nivelEnConstruccion.dificultad.nombre}">${mundo.nivelEnConstruccion.dificultad.nombre}</option>
 							<option value="FACIL">Facil</option>
 							<option value="NORMAL">Normal</option>
@@ -37,10 +39,17 @@
 							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" />
 					</td>
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.alto" />
+
+
 					<td>Columnas</td>
+
+
+
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.tablero.ancho"
+
 							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
+
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.ancho" />
 				</tr>
 				<tr>
@@ -51,9 +60,12 @@
 					<stripes:errors
 						field="mundo.nivelEnConstruccion.cantidadMovimientos" />
 					<td>Cantidad de puntos</td>
+
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.puntajeMinimo"
+
 							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
+
 					<stripes:errors field="mundo.nivelEnConstruccion.puntajeMinimo" />
 				</tr>
 			</table>
@@ -100,13 +112,19 @@
 					</tfoot>
 				</table>
 			</div>
+<<<<<<< .mine
+
+			<stripes:submit name="agregarNivel" value="Crear nivel"  class="colorBoton" />
+=======
 			<stripes:submit name="agregarNivel" value="Crear nivel"
 				class="colorBoton" />
+>>>>>>> .r40
 			<stripes:errors field="mundo.nivelEnConstruccion.objetivosDelNivel" />
+
 		</stripes:form>
 	</div>
 	<div>
-		<!--ACA VA LA PARTE DE LOS NIVELES CREADOS-->
+
 		<h4 style="color: #00557F">Niveles creados</h4>
 		<stripes:form beanclass="action.ConfigurarActionBean">
 			<div>
@@ -122,7 +140,7 @@
 							<td width="35%"><span>${nivel.nombre}</span></td>
 							<!--Boton no terminado, falta el editar/>-->
 							<td width="10%"><stripes:link
-									beanclass="action.ConfigurarActionBean" event="editar">
+									beanclass="action.ConfigurarActionBean" event="editarNivel">
 									<stripes:param name="id" value="${m}" />
 									<image src="imagenes/editar.png" width="20" height="20">
 								</stripes:link></td>
