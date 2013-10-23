@@ -23,7 +23,7 @@
 				<tr>
 					<td>Dificultad</td>
 					<stripes:errors field="dificultad" />
-					<td><stripes:select name="dificultad">
+					<td><stripes:select name="dificultad" style="border: 0 none;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;">
 							<option value="${mundo.nivelEnConstruccion.dificultad.nombre}">${mundo.nivelEnConstruccion.dificultad.nombre}</option>
 							<option value="FACIL">Facil</option>
 							<option value="NORMAL">Normal</option>
