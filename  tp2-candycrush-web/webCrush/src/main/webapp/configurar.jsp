@@ -78,9 +78,7 @@
 					</td>
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.alto" />
 
-
 					<td>Columnas</td>
-
 
 
 					<td><stripes:text
@@ -148,10 +146,6 @@
 					</tfoot>
 				</table>
 			</div>
-
-
-			<stripes:submit name="agregarNivel" value="Crear nivel"
-				class="colorBoton" />
 
 			<stripes:submit name="agregarNivel" value="Crear nivel"
 				class="colorBoton" />
