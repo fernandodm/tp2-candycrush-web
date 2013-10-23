@@ -4,6 +4,7 @@
 	<html>
 <head>
 <title>${title}</title>
+<link rel="stylesheet" type="text/css" href="css/cs_basic.css">
 </head>
 <body background="imagenes/fondoObjetivos.jpg">
 
@@ -24,8 +25,8 @@
 		<stripes:layout-component name="body">
 		</stripes:layout-component>
 		<tr>
-			<td><stripes:submit name="agregarObjetivo" value="Agregar" /></td>
-			<td><stripes:submit name="cancelarObjetivo" value="Cancelar" /></td>
+			<td><stripes:submit name="agregarObjetivo" value="Agregar" class="colorBoton"/></td>
+			<td><stripes:submit name="cancelarObjetivo" value="Cancelar" class="colorBoton" /></td>
 		</tr>
 
 	</table>
