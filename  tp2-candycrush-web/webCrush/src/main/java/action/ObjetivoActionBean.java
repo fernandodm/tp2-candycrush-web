@@ -73,6 +73,8 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
         this.getContext().setValidationErrors(errors);
         return new ForwardResolution("/grandesExplosiones.jsp");	
     }
+	
+
 		
 	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivo(){

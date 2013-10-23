@@ -59,20 +59,33 @@ public class ConfigurarActionBean extends BaseActionBean {
 		return new ForwardResolution("configurar.jsp");
 	}
 	
+	public ForwardResolution validarQueHayaDificultad(){
+		ValidationErrors errors = new ValidationErrors();
+			errors.add("dificultad", new SimpleError("Seleccione una dificultad antes para poder agregar un objetivo"));
+		
+        this.getContext().setValidationErrors(errors);
+        return new ForwardResolution(ConfigurarActionBean.class);	
+	}
+	
+	
 	@HandlesEvent("agregarExpPorColor")
 	public Resolution agregarExpPorColor(){
-		
-		agregarDificultad();	
-		
-		return new ForwardResolution(ExplosionesPorColorActionBean.class);
+		if(dificultad == null)
+			return validarQueHayaDificultad();
+		else{
+			agregarDificultad();	
+			return new ForwardResolution(ExplosionesPorColorActionBean.class);
+		}
 	}
 	
 	@HandlesEvent("agregarGrandesExplosiones")
-	public Resolution agregarGrandesExplosiones(){
-		
-		agregarDificultad();	
-		
-		return new ForwardResolution(GrandesExplosionesActionBean.class);
+	public Resolution agregarGrandesExplosiones(){	
+		if(dificultad == null)
+			return validarQueHayaDificultad();
+		else{
+			agregarDificultad();	
+			return new ForwardResolution(GrandesExplosionesActionBean.class);
+		}
 	}
 	
 	public void setearDificultad(Dificultad dif){
