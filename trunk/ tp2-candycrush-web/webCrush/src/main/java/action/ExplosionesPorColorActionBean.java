@@ -5,10 +5,9 @@ import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.controller.LifecycleStage;
 
-@SessionScope
+
 public class ExplosionesPorColorActionBean extends ObjetivoActionBean{
 	
 	@Before(stages=LifecycleStage.BindingAndValidation)

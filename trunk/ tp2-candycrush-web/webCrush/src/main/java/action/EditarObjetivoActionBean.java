@@ -3,9 +3,7 @@ package action;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.SessionScope;
 
-@SessionScope
 public abstract class EditarObjetivoActionBean extends BaseActionBean {
 	
 	public abstract Resolution agregarObjetivo();

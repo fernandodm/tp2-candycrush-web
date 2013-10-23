@@ -17,7 +17,7 @@ import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
 
-@SessionScope
+
 public class ConfigurarActionBean extends BaseActionBean {
 	
 	private MundoAppModel mundo;

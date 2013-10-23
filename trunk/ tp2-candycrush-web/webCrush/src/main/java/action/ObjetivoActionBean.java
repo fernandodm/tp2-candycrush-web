@@ -6,12 +6,11 @@ import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 
-@SessionScope
+
 public abstract class ObjetivoActionBean extends BaseActionBean {
 	private Objetivo objetivo;
 	private List<String> colores;
