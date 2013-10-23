@@ -133,58 +133,89 @@ public class ConfigurarActionBean extends BaseActionBean {
 		return new ForwardResolution(EditarExplosionesPorColorActionBean.class);
 	}
 	
+	public boolean validarNombreNivel(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getNombre() == null){
+			errors.add("mundo.nivelEnConstruccion.nombre", new SimpleError("Ingrese un nombre para el nivel"));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarLaDificultad(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getDificultad() == null){
+			errors.add("dificultad", new SimpleError("Ingrese una dificultad"));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarAlto(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getTablero().getAlto() == null ||
+		(int)mundo.getNivelEnConstruccion().getTablero().getAlto() < 3){
+			errors.add("mundo.nivelEnConstruccion.tablero.alto", new SimpleError("Filas mínimas = 3"));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarAncho(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getTablero().getAncho() == null ||
+		mundo.getNivelEnConstruccion().getTablero().getAncho() < 3){
+			errors.add("mundo.nivelEnConstruccion.tablero.ancho", new SimpleError("Columnas mínimas = 3"));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarCantidadMovimientos(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getCantidadMovimientos() == null ||
+		        (int)mundo.getNivelEnConstruccion().getCantidadMovimientos() < 1){
+		        	errors.add("mundo.nivelEnConstruccion.cantidadMovimientos", new SimpleError("Movimientos mínimos = 1"));
+		        	return true;
+		}
+		return false;
+	}
+	
+	public boolean validarPuntajeMinimo(ValidationErrors errors){
+		if(mundo.getNivelEnConstruccion().getPuntajeMinimo() == null){
+			errors.add("mundo.nivelEnConstruccion.puntajeMinimo", new SimpleError("Ingrese un puntaje mínimo"));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarObjetivosDelNivel(ValidationErrors errors){
+		if(this.mundo.objetivosDelNivel().size() == 0){
+			errors.add("mundo.nivelEnConstruccion.objetivosDelNivel", new SimpleError("Debe agregar por lo menos un objetivo"));
+	        return  true;
+		}
+		return false;
+	}
+	
 	@HandlesEvent("agregarNivel")
 	public Resolution agregarNivel(){
 			
-			boolean falloValidation = false;
+			boolean val = false;
 
 			ValidationErrors errors = new ValidationErrors();
 			
-			if(mundo.getNivelEnConstruccion().getNombre() == null){
-				errors.add("mundo.nivelEnConstruccion.nombre", new SimpleError("Ingrese un nombre para el nivel"));
-				falloValidation = true;
-			}
-			
-			if(mundo.getNivelEnConstruccion().getDificultad() == null){
-				errors.add("dificultad", new SimpleError("Ingrese una dificultad"));
-				falloValidation = true;
-			}
-		
-			if(mundo.getNivelEnConstruccion().getTablero().getAlto() == null ||
-			(int)mundo.getNivelEnConstruccion().getTablero().getAlto() < 3){
-				errors.add("mundo.nivelEnConstruccion.tablero.alto", new SimpleError("Filas mínimas = 3"));
-				falloValidation = true;
-			}
-					
-			if(mundo.getNivelEnConstruccion().getTablero().getAncho() == null ||
-			mundo.getNivelEnConstruccion().getTablero().getAncho() < 3){
-				errors.add("mundo.nivelEnConstruccion.tablero.ancho", new SimpleError("Columnas mínimas = 3"));
-				falloValidation = true;
-			}
-					
-			if(mundo.getNivelEnConstruccion().getCantidadMovimientos() == null ||
-		        (int)mundo.getNivelEnConstruccion().getCantidadMovimientos() < 1)
-		        	errors.add("mundo.nivelEnConstruccion.cantidadMovimientos", new SimpleError("Movimientos mínimos = 1"));
-		    
-			if(mundo.getNivelEnConstruccion().getPuntajeMinimo() == null){
-				errors.add("mundo.nivelEnConstruccion.puntajeMinimo", new SimpleError("Ingrese un puntaje mínimo"));
-				falloValidation = true;
-			}
-			
-			if(this.mundo.objetivosDelNivel().size() == 0){
-				errors.add("mundo.nivelEnConstruccion.objetivosDelNivel", new SimpleError("Debe agregar por lo menos un objetivo"));
-		        falloValidation = true;
-			}
-				
-			if(falloValidation){
+			val = this.validarNombreNivel(errors) || val;
+			val = this.validarLaDificultad(errors) || val;
+			val = this.validarAlto(errors) || val;
+			val = this.validarAncho(errors) || val;
+			val = this.validarCantidadMovimientos(errors) || val;		
+			val = this.validarPuntajeMinimo(errors) || val;
+			val = this.validarObjetivosDelNivel(errors) || val; 
+		    		
+			if(val){
 		        this.getContext().setValidationErrors(errors);
 		        return new ForwardResolution(ConfigurarActionBean.class);
 			}
-			
+			else{
 			this.mundo.getNiveles().add(this.mundo.getNivelEnConstruccion());
 			mundo.setNivelEnConstruccion(new Nivel());
 			return this.view();
+			}
 		}
-
 }
 
