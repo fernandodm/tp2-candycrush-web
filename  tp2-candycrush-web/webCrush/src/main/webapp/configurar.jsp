@@ -7,16 +7,16 @@
 </head>
 <body background="imagenes/fondoConfig.jpg">
 	<div style="float: left; border-right: 1px solid #353232; width: 50%">
-		<i><h4 style="color:#00557F" >Bienvenido/a ${mundo.nombreUsuario} ya podes configurar tus
-			niveles!</h4></i>
+		<i><h4 style="color: #00557F">Bienvenido/a
+				${mundo.nombreUsuario} ya podes configurar tus niveles!</h4></i>
 		<stripes:form beanclass="action.ConfigurarActionBean" focus="">
 			<stripes:errors globalErrorsOnly="true" />
 			<h4>Crear nivel:</h4>
 			<table>
-
 				<tr>
 					<td>Nombre</td>
-					<td><stripes:text name="mundo.nivelEnConstruccion.nombre" />
+					<td><stripes:text name="mundo.nivelEnConstruccion.nombre"
+							style="-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" />
 					</td>
 					<stripes:errors field="mundo.nivelEnConstruccion.nombre" />
 				</tr>
@@ -33,32 +33,31 @@
 				<tr>
 					<td>Tablero: Filas</td>
 					<td><stripes:text
-							name="mundo.nivelEnConstruccion.tablero.alto" style="width: 50px" /></td>
+							name="mundo.nivelEnConstruccion.tablero.alto"
+							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" />
+					</td>
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.alto" />
-
 					<td>Columnas</td>
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.tablero.ancho"
-							style="width: 50px" /></td>
+							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.ancho" />
 				</tr>
 				<tr>
 					<td>Cantidad de movimiento</td>
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.cantidadMovimientos"
-							style="width: 50px" /></td>
+							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
 					<stripes:errors
 						field="mundo.nivelEnConstruccion.cantidadMovimientos" />
 					<td>Cantidad de puntos</td>
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.puntajeMinimo"
-							style="width: 50px" /></td>
+							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
 					<stripes:errors field="mundo.nivelEnConstruccion.puntajeMinimo" />
 				</tr>
-
 			</table>
 			<div class="datagrid" style="margin-top: 30px">
-
 				<table>
 					<thead>
 						<tr>
@@ -101,13 +100,14 @@
 					</tfoot>
 				</table>
 			</div>
-			<stripes:submit name="agregarNivel" value="Crear nivel"  class="colorBoton" />
+			<stripes:submit name="agregarNivel" value="Crear nivel"
+				class="colorBoton" />
 			<stripes:errors field="mundo.nivelEnConstruccion.objetivosDelNivel" />
 		</stripes:form>
 	</div>
 	<div>
 		<!--ACA VA LA PARTE DE LOS NIVELES CREADOS-->
-		<h4 style="color:#00557F">Niveles creados</h4>
+		<h4 style="color: #00557F">Niveles creados</h4>
 		<stripes:form beanclass="action.ConfigurarActionBean">
 			<div>
 				<table style="margin-top: 30px">
