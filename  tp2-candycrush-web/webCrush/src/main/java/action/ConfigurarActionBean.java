@@ -132,6 +132,11 @@ public class ConfigurarActionBean extends BaseActionBean {
 				falloValidation = true;
 			}
 			
+			if(mundo.getNivelEnConstruccion().getDificultad() == null){
+				errors.add("dificultad", new SimpleError("Ingrese una dificultad"));
+				falloValidation = true;
+			}
+		
 			if(mundo.getNivelEnConstruccion().getTablero().getAlto() == null ||
 			(int)mundo.getNivelEnConstruccion().getTablero().getAlto() < 3){
 				errors.add("mundo.nivelEnConstruccion.tablero.alto", new SimpleError("Filas mínimas = 3"));
@@ -169,3 +174,4 @@ public class ConfigurarActionBean extends BaseActionBean {
 		}
 
 }
+
