@@ -17,6 +17,7 @@
 							<option value="5">5</option>
 
 						</stripes:select></td>
+						<stripes:errors field="objetivo.cantidad" />
 
 				</tr>
 
