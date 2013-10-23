@@ -7,8 +7,8 @@
 </head>
 <body background="imagenes/fondoConfig.jpg">
 	<div style="float: left; border-right: 1px solid #353232; width: 50%">
-		<h4>Bienvenido/a ${mundo.nombreUsuario} ya podes configurar tus
-			niveles!</h4>
+		<i><h4 style="color:#00557F" >Bienvenido/a ${mundo.nombreUsuario} ya podes configurar tus
+			niveles!</h4></i>
 		<stripes:form beanclass="action.ConfigurarActionBean" focus="">
 			<stripes:errors globalErrorsOnly="true" />
 			<h4>Crear nivel:</h4>
@@ -71,7 +71,6 @@
 							var="objetivo">
 							<tr class="alt">
 								<td width="50%"><span>${objetivo.descripcion}</span></td>
-								<!--Boton no terminado, falta el editar/>-->
 								<td width="10%"><stripes:link
 										beanclass="action.ConfigurarActionBean" event="editarObjetivo">
 										<stripes:param name="id" value="${n}" />
@@ -106,7 +105,7 @@
 	</div>
 	<div>
 		<!--ACA VA LA PARTE DE LOS NIVELES CREADOS-->
-		<h4>Niveles creados</h4>
+		<h4 style="color:#00557F">Niveles creados</h4>
 		<stripes:form beanclass="action.ConfigurarActionBean">
 			<div>
 				<table style="margin-top: 30px">
