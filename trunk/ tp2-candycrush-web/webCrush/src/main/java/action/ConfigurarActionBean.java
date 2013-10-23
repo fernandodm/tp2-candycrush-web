@@ -81,7 +81,6 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 	
 	@HandlesEvent("agregarGrandesExplosiones")
-
 	public Resolution agregarGrandesExplosiones(){	
 		if(dificultad == null)
 			return validarQueHayaDificultad();
@@ -120,7 +119,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 	
 	@HandlesEvent("eliminarNivel")
     public Resolution eliminarNivel() {
-    	this.mundo.getNiveles().remove(this.getNivel());
+    	this.mundo.getMundo().getNiveles().remove(this.getNivel());
   
     	return this.view();
     }
@@ -131,7 +130,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 
 	public Nivel getNivel(){
-		return this.mundo.getNiveles().get(id);
+		return this.mundo.getMundo().getNiveles().get(id);
 	}
 	
 	@HandlesEvent("editarObjetivo")
@@ -237,7 +236,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 		        return new ForwardResolution(ConfigurarActionBean.class);
 			} else {
 			
-			this.mundo.getNiveles().add(this.mundo.getNivelEnConstruccion());
+			this.mundo.getMundo().getNiveles().add(this.mundo.getNivelEnConstruccion());
 			mundo.setNivelEnConstruccion(new Nivel());
 			return this.view();}
 			
