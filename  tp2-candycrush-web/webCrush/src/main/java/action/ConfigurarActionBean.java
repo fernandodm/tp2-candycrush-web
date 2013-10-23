@@ -3,10 +3,6 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
-import Tp.CandyCrush.Dificultad;
-import Tp.CandyCrush.Nivel;
-import Tp.CandyCrush.Objetivo;
-import appModel.MundoAppModel;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -15,6 +11,10 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
+import Tp.CandyCrush.Dificultad;
+import Tp.CandyCrush.Nivel;
+import Tp.CandyCrush.Objetivo;
+import appModel.MundoAppModel;
 
 
 public class ConfigurarActionBean extends BaseActionBean {
@@ -70,15 +70,18 @@ public class ConfigurarActionBean extends BaseActionBean {
 	
 	@HandlesEvent("agregarExpPorColor")
 	public Resolution agregarExpPorColor(){
+
 		if(dificultad == null)
 			return validarQueHayaDificultad();
 		else{
 			agregarDificultad();	
 			return new ForwardResolution(ExplosionesPorColorActionBean.class);
 		}
+
 	}
 	
 	@HandlesEvent("agregarGrandesExplosiones")
+
 	public Resolution agregarGrandesExplosiones(){	
 		if(dificultad == null)
 			return validarQueHayaDificultad();
@@ -86,6 +89,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 			agregarDificultad();	
 			return new ForwardResolution(GrandesExplosionesActionBean.class);
 		}
+
 	}
 	
 	public void setearDificultad(Dificultad dif){
@@ -108,21 +112,34 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 
 	
-	@HandlesEvent("eliminar")
-    public Resolution eliminar() {
-    	this.mundo.eliminarObjetivo(this.getObjetivo());
-    	
+	@HandlesEvent("eliminar") 
+	public Resolution eliminar() { 
+		this.mundo.eliminarObjetivo(this.getObjetivo()); 
+		return this.view(); 
+		}
+	
+	@HandlesEvent("eliminarNivel")
+    public Resolution eliminarNivel() {
+    	this.mundo.getNiveles().remove(this.getNivel());
+  
     	return this.view();
     }
+	
 		
 	public Objetivo getObjetivo(){
+		return this.mundo.objetivosDelNivel().get(id);
+	}
+
+	public Nivel getNivel(){
 		
-		return this.mundo.objetivosDelNivel().get(id); 
-		
+		return this.mundo.getNiveles().get(id);
 	}
 	
+
+
 	@HandlesEvent("editarObjetivo")
 	public Resolution editarObjetivo(){
+
 		
 		if(this.getObjetivo().esGrandesExplosiones()){
 			this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
@@ -131,8 +148,18 @@ public class ConfigurarActionBean extends BaseActionBean {
 		
 		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
 		return new ForwardResolution(EditarExplosionesPorColorActionBean.class);
+
 	}
 	
+
+
+	@HandlesEvent("editarNivel")
+	public Resolution editNivel(){
+		this.getContext().getRequest().getSession().setAttribute("nivel",this.getNivel());
+		return new ForwardResolution(EditarNivelActionBean.class);
+	}
+	
+
 	public boolean validarNombreNivel(ValidationErrors errors){
 		if(mundo.getNivelEnConstruccion().getNombre() == null){
 			errors.add("mundo.nivelEnConstruccion.nombre", new SimpleError("Ingrese un nombre para el nivel"));
@@ -192,6 +219,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 		return false;
 	}
 	
+
 	@HandlesEvent("agregarNivel")
 	public Resolution agregarNivel(){
 			
@@ -210,12 +238,14 @@ public class ConfigurarActionBean extends BaseActionBean {
 			if(val){
 		        this.getContext().setValidationErrors(errors);
 		        return new ForwardResolution(ConfigurarActionBean.class);
-			}
-			else{
+			} else {
+			
 			this.mundo.getNiveles().add(this.mundo.getNivelEnConstruccion());
 			mundo.setNivelEnConstruccion(new Nivel());
-			return this.view();
+			return this.view();}
+			
 			}
-		}
+		
+
 }
 
