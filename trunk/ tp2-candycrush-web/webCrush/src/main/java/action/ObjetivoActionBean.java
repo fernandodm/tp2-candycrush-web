@@ -2,11 +2,16 @@ package action;
 
 import java.util.List;
 
+import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
+import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import Tp.CandyCrush.ExplosionesPorColor;
+import Tp.CandyCrush.GrandesExplosiones;
 import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 
@@ -48,14 +53,39 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
 		setColores((List<String>) this.getContext().getRequest().getSession().getAttribute("colores"));
 		setMundoApp((MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundo"));
 	}
+
+	public ForwardResolution validarExplosionesPorColor(){
+			ValidationErrors errors = new ValidationErrors();
+			if(this.getObjetivo().getColor() == null)
+				errors.add("objetivo.color", new SimpleError("Seleccione un color"));
+			if(((ExplosionesPorColor) this.getObjetivo()).getCantidad() == null || ((ExplosionesPorColor) this.getObjetivo()).getCantidad() <= 0 )
+				errors.add("objetivo.cantidad", new SimpleError("La cantidad del objetivo no puede ser 0 ni nula"));
+	        
+	        this.getContext().setValidationErrors(errors);
+	        return new ForwardResolution("/explosionesPorColor.jsp");	
+	}
 	
+	public ForwardResolution validarGrandesExplosiones(){
+		ValidationErrors errors = new ValidationErrors();
+		if(this.getObjetivo().getColor() == null)
+			errors.add("objetivo.color", new SimpleError("Seleccione un color"));
+		
+        this.getContext().setValidationErrors(errors);
+        return new ForwardResolution("/grandesExplosiones.jsp");	
+    }
+		
 	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivo(){
-		getMundoApp().getNivelEnConstruccion().agregarObjetivo(getObjetivo());
-		
-		setObjetivo(null);
-				
-		return new ForwardResolution(ConfigurarActionBean.class);
+		if(!this.getObjetivo().puedeAgregarObjetivo()){
+			if(this.getObjetivo().esExplosionesPorColor())
+				return this.validarExplosionesPorColor();
+			else
+				return this.validarGrandesExplosiones();
+		}
+		else{
+			getMundoApp().getNivelEnConstruccion().agregarObjetivo(getObjetivo());
+			return new ForwardResolution(ConfigurarActionBean.class);
+		}
 	}
 	
 	@HandlesEvent("cancelarObjetivo")

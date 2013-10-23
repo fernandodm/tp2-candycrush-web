@@ -9,7 +9,7 @@
 					<td>Cantidad</td>
 
 					<td><stripes:text name="objetivo.cantidad"></stripes:text></td>
-
+						<stripes:errors field="objetivo.cantidad" />
 				</tr>
 			</table>
 
