@@ -4,9 +4,12 @@
 	uri="http://stripes.sourceforge.net/stripes.tld"%>
 
 <html>
+<head>
+<title>Ingreasar a Candy Crush</title>
+<link rel="stylesheet" type="text/css" href="css/cs_basic.css">
+</head>
 <body background="imagenes/fondoHome.jpg">
 
-	<title>Ingreasar a Candy Crush</title>
 	<img src="imagenes/candycrush.jpg">
 	<i><h2>Bienvenidos al Candy Crush</h2></i>
 	<i>El gran juego para organizar tus niveles</i>
@@ -24,9 +27,9 @@
 			</tr>
 		</table>
 
-		<stripes:submit name="login" value="Ingresar" />
-		
+		<stripes:submit name="login" value="Ingresar" class="colorBoton" />
+
 	</stripes:form>
-	
+
 </body>
 </html>
