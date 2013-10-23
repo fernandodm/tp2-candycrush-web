@@ -1,7 +1,7 @@
 <%@ include file="/taglibs.jsp"%>
 
 <stripes:form beanclass="action.EditarExplosionesPorColorEnEditarNivelActionBean" focus="">
-	<stripes:layout-render name="/layoutDesdeNivel.jsp"
+	<stripes:layout-render name="/layout.jsp"
 		title="Editar Objetivo: Explosiones por color">
 		<stripes:layout-component name="body">
 			<table>

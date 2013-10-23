@@ -1,6 +1,5 @@
 package action;
 
-import Tp.CandyCrush.ExplosionesPorColor;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -36,8 +35,8 @@ public class ExplosionesPorColorEnEditarNivelActionBean extends ObjetivoActionBe
 	
 	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivo(){
-		if(!this.getNivel().getObjetivo().puedeAgregarObjetivo()){
-			if(this.getNivel().getObjetivo().esExplosionesPorColor())
+		if(!this.getObjetivo().puedeAgregarObjetivo()){
+			if(this.getObjetivo().esExplosionesPorColor())
 				return this.validarExplosionesPorColor();
 			else
 				return this.validarGrandesExplosiones();

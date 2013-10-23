@@ -2,7 +2,7 @@
 
 <stripes:form beanclass="action.EditarGrandesExplosionesEnEditarNivelActionBean"
 	focus="">
-	<stripes:layout-render name="/layoutDesdeNivel.jsp"
+	<stripes:layout-render name="/layout.jsp"
 		title="Editar Objetivo: Grandes explosiones">
 		<stripes:layout-component name="body">
 			<table>
