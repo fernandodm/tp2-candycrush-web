@@ -127,3 +127,9 @@
 	background:#00557F
 	
 }
+
+.campo {
+	-webkit-border-radius: 20px; 
+	padding: 2px;
+	font: bold 12px Arial,Helvetica,Sans-serif;
+}
