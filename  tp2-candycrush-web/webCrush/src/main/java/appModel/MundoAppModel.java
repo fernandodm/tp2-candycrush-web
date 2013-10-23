@@ -18,13 +18,13 @@ public class MundoAppModel {
 	private Mundo mundo = new Mundo();
 	private Nivel nivelEnConstruccion = new Nivel();
 	private Dificultad	 dificultad;
-	private ArrayList<Nivel> niveles =  new ArrayList<Nivel>();
+	private List<Nivel> niveles;
 	private Objetivo objetivo;
 	
-	public ArrayList<Nivel> getNiveles() {
+	public List<Nivel> getNiveles() {
 		return niveles;
 	}
-	public void setNiveles(ArrayList<Nivel> niveles) {
+	public void setNiveles(List<Nivel> niveles) {
 		this.niveles = niveles;
 	}
 	public Nivel getNivelEnConstruccion() {
@@ -69,6 +69,20 @@ public class MundoAppModel {
 		this.mundo.getNiveles().add(niv);
 	}
 	
+
+
+	public List<Nivel> buscarPorNombre(String nombre){
+		this.setNiveles(new ArrayList<Nivel>());
+		
+			for(Nivel each: this.mundo.getNiveles()){
+				System.out.println(each.getNombre().contains(nombre));
+				if(each.getNombre().contains(nombre))
+					this.getNiveles().add(each);
+		
+		}
+		
+		return this.getNiveles();
+	}
 
 	
 }
