@@ -23,6 +23,7 @@
 				<tr>
 					<td>Dificultad</td>
 					<td><stripes:select name="dificultad">
+							<option value="${mundo.nivelEnConstruccion.dificultad.nombre}">${mundo.nivelEnConstruccion.dificultad.nombre}</option>
 							<option value="FACIL">Facil</option>
 							<option value="NORMAL">Normal</option>
 							<option value="DIFICIL">Dificil</option>
