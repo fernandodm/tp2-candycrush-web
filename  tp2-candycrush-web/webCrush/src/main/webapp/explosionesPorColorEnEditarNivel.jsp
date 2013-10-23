@@ -1,15 +1,15 @@
 <%@ include file="/taglibs.jsp"%>
 
-<stripes:form beanclass="action.EditarExplosionesPorColorEnEditarNivelActionBean" focus="">
+<stripes:form beanclass="action.ExplosionesPorColorEnEditarNivelActionBean" focus="">
 	<stripes:layout-render name="/layoutDesdeNivel.jsp"
-		title="Editar Objetivo: Explosiones por color">
+		title="Nuevo Objetivo: Explosiones por color">
 		<stripes:layout-component name="body">
 			<table>
 				<tr>
 					<td>Cantidad</td>
 
-					<td><stripes:text name="objetivo.cantidad" value="${objetivo.cantidad}"></stripes:text></td>
-
+					<td><stripes:text name="objetivo.cantidad"></stripes:text></td>
+						<stripes:errors field="objetivo.cantidad" />
 				</tr>
 			</table>
 

@@ -23,8 +23,6 @@ public class EditarNivelActionBean extends BaseActionBean {
 	private Integer idn;
 	private MundoAppModel mundoApp;
 
-	
-	
 	public MundoAppModel getMundoApp() {
 		return mundoApp;
 	}
@@ -228,7 +226,7 @@ public class EditarNivelActionBean extends BaseActionBean {
 		}
 		
 		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
-		return new ForwardResolution(EditarExplosionesPorColorActionBean.class);
+		return new ForwardResolution(EditarExplosionesPorColorEnEditarNivelActionBean.class);
 
 	}
 	
