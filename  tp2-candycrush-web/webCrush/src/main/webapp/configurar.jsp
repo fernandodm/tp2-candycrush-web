@@ -21,7 +21,7 @@
 					</thead>
 					<tbody>
 						<c:set var="m" value="${0}" />
-						<c:forEach items="${mundo.niveles}" var="nivel">
+						<c:forEach items="${mundo.mundo.niveles}" var="nivel">
 							<tr>
 								<td width="40%"><span>${nivel.nombre}</span></td>
 								<!--Boton no terminado, falta el editar/>-->
