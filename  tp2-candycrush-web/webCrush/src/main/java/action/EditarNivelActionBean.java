@@ -3,8 +3,6 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
-import appModel.MundoAppModel;
-
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -13,9 +11,7 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
-import Tp.CandyCrush.Dificultad;
-import Tp.CandyCrush.Nivel;
-import Tp.CandyCrush.Objetivo;
+import appModel.MundoAppModel;
 
 public class EditarNivelActionBean extends BaseActionBean {
 
@@ -139,7 +135,7 @@ public class EditarNivelActionBean extends BaseActionBean {
 		        return new ForwardResolution(EditarNivelActionBean.class);
 			} else {
 			
-				this.getMundoApp().getNiveles().get(this.getIdn()).setNombre(this.getNivel().getNombre());
+				this.getMundoApp().getNiveles().add(this.getNivel());
 				
 				return new ForwardResolution(ConfigurarActionBean.class);
 			}
@@ -158,8 +154,9 @@ public class EditarNivelActionBean extends BaseActionBean {
 		if(this.nivel.getDificultad() == null)
 			return validarQueHayaDificultad();
 		else{
-			agregarDificultad();	
-			return new ForwardResolution(ExplosionesPorColorActionBean.class);
+			agregarDificultad();
+			this.getContext().getRequest().getSession().setAttribute("nivel",this.getNivel());
+			return new ForwardResolution(ExplosionesPorColorEnEditarNivelActionBean.class);
 		}
 		
 	}
@@ -176,8 +173,8 @@ public class EditarNivelActionBean extends BaseActionBean {
 	public Resolution agregarGrandesExplosiones(){
 		
 		this.agregarDificultad();	
-		
-		return new ForwardResolution(GrandesExplosionesActionBean.class);
+		this.getContext().getRequest().getSession().setAttribute("nivel",this.getNivel());
+		return new ForwardResolution(GrandesExplosionesEnEditarNivelActionBean.class);
 	}
 	
 	public void setearDificultad(Dificultad dif){
@@ -222,7 +219,7 @@ public class EditarNivelActionBean extends BaseActionBean {
 		
 		if(this.getObjetivo().esGrandesExplosiones()){
 			this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
-			return new ForwardResolution(EditarGrandesExplosionesActionBean.class);
+			return new ForwardResolution(EditarGrandesExplosionesEnEditarNivelActionBean.class);
 		}
 		
 		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
