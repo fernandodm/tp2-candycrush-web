@@ -19,7 +19,6 @@ public class MundoAppModel {
 	private Nivel nivelEnConstruccion = new Nivel();
 	private Dificultad	 dificultad;
 	private ArrayList<Nivel> niveles =  new ArrayList<Nivel>();
-	
 	private Objetivo objetivo;
 	
 	public ArrayList<Nivel> getNiveles() {

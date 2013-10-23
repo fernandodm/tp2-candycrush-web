@@ -131,12 +131,9 @@ public class ConfigurarActionBean extends BaseActionBean {
 	}
 
 	public Nivel getNivel(){
-		
 		return this.mundo.getNiveles().get(id);
 	}
 	
-
-
 	@HandlesEvent("editarObjetivo")
 	public Resolution editarObjetivo(){
 
@@ -151,11 +148,11 @@ public class ConfigurarActionBean extends BaseActionBean {
 
 	}
 	
-
-
 	@HandlesEvent("editarNivel")
 	public Resolution editNivel(){
+		this.getContext().getRequest().getSession().setAttribute("mundoApp",this.getMundo());
 		this.getContext().getRequest().getSession().setAttribute("nivel",this.getNivel());
+		this.getContext().getRequest().getSession().setAttribute("idn",this.getId());
 		return new ForwardResolution(EditarNivelActionBean.class);
 	}
 	

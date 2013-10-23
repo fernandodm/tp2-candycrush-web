@@ -67,9 +67,9 @@
 				
 				
 			</table>
-			
-			<stripes:form beanclass="action.EditarNivelActionBean" focus="">
 			</stripes:form>
+			<stripes:form beanclass="action.EditarNivelActionBean" focus="">
+			
 			
 			<div class="datagrid" style="margin-top: 30px">
 
@@ -88,12 +88,12 @@
 							<tr class="alt">
 								<td width="50%"><span>${objetivo.descripcion}</span></td>
 								<td width="10%"><stripes:link
-										beanclass="action.ConfigurarActionBean" event="editarObjetivo">
+										beanclass="action.EditarNivelActionBean" event="editarObjetivo">
 										<stripes:param name="id" value="${n}" />
 										<image src="imagenes/editar.png" width="20" height="20">
 									</stripes:link></td>
 								<td width="10%"><stripes:link
-										beanclass="action.ConfigurarActionBean" event="eliminar">
+										beanclass="action.EditarNivelActionBean" event="eliminar">
 										<stripes:param name="id" value="${n}" />
 										<image src="imagenes/eliminar1.PNG" width="20" height="20">
 									</stripes:link></td>
@@ -117,18 +117,17 @@
 							
 					
 				</table>
+				
+				<stripes:submit name="agregarNivell" value="Terminar"/>
+				<stripes:submit name="terminarEdicionNivel" value="Cancelar"/>
+				<stripes:errors field="nivel.objetivos" />
 			</div>
-			
-				<tr>
-					<stripes:submit name="terminarEdicionNivel" value="Terminar"/>
-					<stripes:submit name="terminarEdicionNivel" value="Cancelar"/>
-				</tr>
-			
-			<stripes:errors field="nivel.objetivosDelNivel" />
-			
-			
 
-		</stripes:form>
+			
+			
+			</stripes:form>
+
+		
 
 	
 
