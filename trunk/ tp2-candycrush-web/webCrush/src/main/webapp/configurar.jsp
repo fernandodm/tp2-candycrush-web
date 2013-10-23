@@ -6,10 +6,11 @@
 <link rel="stylesheet" type="text/css" href="css/cs_basic.css">
 </head>
 <body background="imagenes/fondoConfig.jpg">
-<div style="float: right; width: 50%" align="center">
+	<div style="float: right; width: 50%" align="center">
 
 		<h4 style="color: #00557F">Niveles creados</h4>
 		<stripes:form beanclass="action.ConfigurarActionBean">
+
 			<div class="datagrid" style="margin-top: 30px">
 				<table>
 					<thead>
@@ -41,6 +42,34 @@
 					<tbody>
 				</table>
 			</div>
+
+			<!--TABLA BUSCAR  -->
+			
+			<div class="datagrid" style="margin-top: 30px">
+
+				<stripes:submit name="filtrarPorNombre" value="Filtrar"
+					class="colorBoton" />
+				<stripes:text name="filtro"
+					style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" />
+				<table>
+					<thead>
+						<tr class="alt">
+							<th width="40%">Niveles</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:set var="x" value="${0}" />
+						<c:forEach items="${mundo.niveles}" var="nivelf">
+							<tr>
+								<td width="40%"><span>${nivelf.nombre}</span></td>
+
+							</tr>
+							<c:set var="x" value="${x+1}" />
+						</c:forEach>
+					<tbody>
+				</table>
+			</div>
+
 		</stripes:form>
 	</div>
 	<div style="border-right: 1px solid #353232; width: 50%">
@@ -146,14 +175,12 @@
 					</tfoot>
 				</table>
 			</div>
-
 			<stripes:submit name="agregarNivel" value="Crear nivel"
 				class="colorBoton" />
-
 			<stripes:errors field="mundo.nivelEnConstruccion.objetivosDelNivel" />
 
 		</stripes:form>
 	</div>
-	
+
 </body>
 </html>

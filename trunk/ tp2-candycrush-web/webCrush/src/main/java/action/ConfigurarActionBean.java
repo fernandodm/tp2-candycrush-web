@@ -3,11 +3,13 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.oval.constraint.HasSubstring;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
@@ -22,6 +24,15 @@ public class ConfigurarActionBean extends BaseActionBean {
 	private MundoAppModel mundo;
 	private Integer id;
 	private String dificultad;
+	private String filtro;
+	
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
 	
 	public String getDificultad() {
 		return dificultad;
@@ -155,7 +166,19 @@ public class ConfigurarActionBean extends BaseActionBean {
 		return new ForwardResolution(EditarNivelActionBean.class);
 	}
 	
+	@HandlesEvent("filtrarPorNombre")
+	public Resolution filtrarPorNombre(){
+		System.out.println(filtro);
+		if(filtro == null){
+			this.mundo.setNiveles(this.mundo.getMundo().getNiveles());
+		}else{
+		this.mundo.setNiveles(this.mundo.buscarPorNombre(filtro));
+		}
 
+		return this.view();
+	}
+	
+	
 	public boolean validarNombreNivel(ValidationErrors errors){
 		if(mundo.getNivelEnConstruccion().getNombre() == null){
 			errors.add("mundo.nivelEnConstruccion.nombre", new SimpleError("Ingrese un nombre para el nivel"));
@@ -214,7 +237,6 @@ public class ConfigurarActionBean extends BaseActionBean {
 		}
 		return false;
 	}
-	
 
 	@HandlesEvent("agregarNivel")
 	public Resolution agregarNivel(){
@@ -230,6 +252,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 			val = this.validarCantidadMovimientos(errors) || val;		
 			val = this.validarPuntajeMinimo(errors) || val;
 			val = this.validarObjetivosDelNivel(errors) || val; 
+		
 		    		
 			if(val){
 		        this.getContext().setValidationErrors(errors);
@@ -240,8 +263,7 @@ public class ConfigurarActionBean extends BaseActionBean {
 			mundo.setNivelEnConstruccion(new Nivel());
 			return this.view();}
 			
-			}
-		
+			}		
 
 }
 
