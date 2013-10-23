@@ -21,7 +21,6 @@ import net.sourceforge.stripes.validation.ValidationErrors;
 public class ConfigurarActionBean extends BaseActionBean {
 	
 	private MundoAppModel mundo;
-	//Entity maneja todo lo del ID
 	private Integer id;
 	private String dificultad;
 	
@@ -113,10 +112,13 @@ public class ConfigurarActionBean extends BaseActionBean {
 	@HandlesEvent("editarObjetivo")
 	public Resolution editarObjetivo(){
 		
+		if(this.getObjetivo().esGrandesExplosiones()){
+			this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
+			return new ForwardResolution(EditarGrandesExplosionesActionBean.class);
+		}
+		
 		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
-		
-		return new ForwardResolution(EditarGrandesExplosionesActionBean.class);
-		
+		return new ForwardResolution(EditarExplosionesPorColorActionBean.class);
 	}
 	
 	@HandlesEvent("agregarNivel")

@@ -14,7 +14,7 @@
 			<td>Color</td>
 
 			<td><stripes:select name="objetivo.color">
-
+					<option value="${objetivo.color}">${objetivo.color}</option>
 					<c:forEach items="${colores}" var="color">
 						<option value="${color}">${color}</option>
 
