@@ -24,7 +24,8 @@
 					<td>Dificultad</td>
 
 					<stripes:errors field="dificultad" />
-					<td><stripes:select name="dificultad" style="border: 0 none;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;">
+					<td><stripes:select name="dificultad"
+							style="border: 0 none;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;">
 
 							<option value="${mundo.nivelEnConstruccion.dificultad.nombre}">${mundo.nivelEnConstruccion.dificultad.nombre}</option>
 							<option value="FACIL">Facil</option>
@@ -47,7 +48,6 @@
 
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.tablero.ancho"
-
 							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
 
 					<stripes:errors field="mundo.nivelEnConstruccion.tablero.ancho" />
@@ -63,7 +63,6 @@
 
 					<td><stripes:text
 							name="mundo.nivelEnConstruccion.puntajeMinimo"
-
 							style="width: 50px;-webkit-border-radius: 20px;padding: 2px;font: bold 12px Arial,Helvetica,Sans-serif;" /></td>
 
 					<stripes:errors field="mundo.nivelEnConstruccion.puntajeMinimo" />
@@ -112,13 +111,14 @@
 					</tfoot>
 				</table>
 			</div>
-<<<<<<< .mine
 
-			<stripes:submit name="agregarNivel" value="Crear nivel"  class="colorBoton" />
-=======
+
 			<stripes:submit name="agregarNivel" value="Crear nivel"
 				class="colorBoton" />
->>>>>>> .r40
+
+			<stripes:submit name="agregarNivel" value="Crear nivel"
+				class="colorBoton" />
+
 			<stripes:errors field="mundo.nivelEnConstruccion.objetivosDelNivel" />
 
 		</stripes:form>
