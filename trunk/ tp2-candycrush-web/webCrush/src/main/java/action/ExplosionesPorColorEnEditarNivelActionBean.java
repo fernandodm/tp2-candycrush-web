@@ -11,9 +11,22 @@ import net.sourceforge.stripes.controller.LifecycleStage;
 
 public class ExplosionesPorColorEnEditarNivelActionBean extends ObjetivoActionBean{
 	
+	private Nivel nivel;
+	
+	
+	
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+
 	@Before(stages=LifecycleStage.BindingAndValidation)
 	public void iniciarObjetivo(){
 		super.setObjetivo(new ExplosionesPorColor());
+		setNivel((Nivel) this.getContext().getRequest().getSession().getAttribute("nivel"));
 	}
 	
 	@DefaultHandler
@@ -23,14 +36,14 @@ public class ExplosionesPorColorEnEditarNivelActionBean extends ObjetivoActionBe
 	
 	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivo(){
-		if(!this.getObjetivo().puedeAgregarObjetivo()){
-			if(this.getObjetivo().esExplosionesPorColor())
+		if(!this.getNivel().getObjetivo().puedeAgregarObjetivo()){
+			if(this.getNivel().getObjetivo().esExplosionesPorColor())
 				return this.validarExplosionesPorColor();
 			else
 				return this.validarGrandesExplosiones();
 		}
 		else{
-			getMundoApp().getNivelEnConstruccion().agregarObjetivo(getObjetivo());
+			this.getNivel().agregarObjetivo(getObjetivo());
 			return new ForwardResolution(EditarNivelActionBean.class);
 		}
 	}
