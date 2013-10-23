@@ -100,8 +100,8 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
 	
 	@HandlesEvent("agregarObjetivoDesdeEditarNIvel")
 	public Resolution agregarObjetivoDesdeEditarNivel(){
-		if(!this.getObjetivo().puedeAgregarObjetivo()){
-			if(this.getObjetivo().esExplosionesPorColor())
+		if(!this.getMundoApp().getObjetivo().puedeAgregarObjetivo()){
+			if(this.getMundoApp().getObjetivo().esExplosionesPorColor())
 				return this.validarExplosionesPorColor();
 			else
 				return this.validarGrandesExplosiones();

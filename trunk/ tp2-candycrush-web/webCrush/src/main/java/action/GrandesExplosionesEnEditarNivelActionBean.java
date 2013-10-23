@@ -37,8 +37,8 @@ public class GrandesExplosionesEnEditarNivelActionBean extends ObjetivoActionBea
 	
 	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivo(){
-		if(!this.getNivel().getObjetivo().puedeAgregarObjetivo()){
-			if(this.getNivel().getObjetivo().esExplosionesPorColor())
+		if(!this.getObjetivo().puedeAgregarObjetivo()){
+			if(this.getObjetivo().esExplosionesPorColor())
 				return this.validarExplosionesPorColor();
 			else
 				return this.validarGrandesExplosiones();

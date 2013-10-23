@@ -29,7 +29,7 @@ public class EditarExplosionesPorColorEnEditarNivelActionBean extends EditarObje
 		return new ForwardResolution("editarExplosionesPorColorDesdeEditarNivel.jsp");
 	}
 
-	@HandlesEvent("agregarObjetivoDesdeEditarNivel")
+	@HandlesEvent("agregarObjetivo")
 	public Resolution agregarObjetivoDesdeEditarNivel(){
 		this.getContext().getRequest().getSession().setAttribute("objetivo",null);
 		return new ForwardResolution(EditarNivelActionBean.class);

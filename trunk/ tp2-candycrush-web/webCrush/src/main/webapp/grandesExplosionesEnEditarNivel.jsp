@@ -1,7 +1,7 @@
 <%@ include file="/taglibs.jsp"%>
 
 <stripes:form beanclass="action.GrandesExplosionesEnEditarNivelActionBean" focus="">
-	<stripes:layout-render name="/layoutDesdeNivel.jsp"
+	<stripes:layout-render name="/layout.jsp"
 		title="Nuevo Objetivo: Grandes explosiones">
 		<stripes:layout-component name="body">
 			<table>
