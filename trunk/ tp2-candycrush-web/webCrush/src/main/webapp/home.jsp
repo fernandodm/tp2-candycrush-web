@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<title>Ingreasar a Candy Crush</title>
+<title>Ingresar a Candy Crush</title>
 <link rel="stylesheet" type="text/css" href="css/cs_basic.css">
 </head>
 <body background="imagenes/fondoHome.jpg">
