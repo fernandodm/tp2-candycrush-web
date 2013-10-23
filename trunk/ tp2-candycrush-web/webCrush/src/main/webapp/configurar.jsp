@@ -6,7 +6,44 @@
 <link rel="stylesheet" type="text/css" href="css/cs_basic.css">
 </head>
 <body background="imagenes/fondoConfig.jpg">
-	<div style="float: left; border-right: 1px solid #353232; width: 50%">
+<div style="float: right; width: 50%" align="center">
+
+		<h4 style="color: #00557F">Niveles creados</h4>
+		<stripes:form beanclass="action.ConfigurarActionBean">
+			<div class="datagrid" style="margin-top: 30px">
+				<table>
+					<thead>
+						<tr class="alt">
+							<th width="40%">Niveles</th>
+							<th width="8%">Editar</th>
+							<th width="8%">Borrar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:set var="m" value="${0}" />
+						<c:forEach items="${mundo.niveles}" var="nivel">
+							<tr>
+								<td width="40%"><span>${nivel.nombre}</span></td>
+								<!--Boton no terminado, falta el editar/>-->
+								<td width="10%"><stripes:link
+										beanclass="action.ConfigurarActionBean" event="editarNivel">
+										<stripes:param name="id" value="${m}" />
+										<image src="imagenes/editar.png" width="20" height="20">
+									</stripes:link></td>
+								<td width="10%"><stripes:link
+										beanclass="action.ConfigurarActionBean" event="eliminarNivel">
+										<stripes:param name="id" value="${m}" />
+										<image src="imagenes/eliminar1.PNG" width="20" height="20">
+									</stripes:link></td>
+							</tr>
+							<c:set var="m" value="${m+1}" />
+						</c:forEach>
+					<tbody>
+				</table>
+			</div>
+		</stripes:form>
+	</div>
+	<div style="border-right: 1px solid #353232; width: 50%">
 		<i><h4 style="color: #00557F">Bienvenido/a
 				${mundo.nombreUsuario} ya podes configurar tus niveles!</h4></i>
 		<stripes:form beanclass="action.ConfigurarActionBean" focus="">
@@ -123,38 +160,6 @@
 
 		</stripes:form>
 	</div>
-	<div>
-
-		<h4 style="color: #00557F">Niveles creados</h4>
-		<stripes:form beanclass="action.ConfigurarActionBean">
-			<div>
-				<table style="margin-top: 30px">
-					<tr>
-						<th width="35%">Niveles</th>
-						<th width="8%">Editar</th>
-						<th width="8%">Borrar</th>
-					</tr>
-					<c:set var="m" value="${0}" />
-					<c:forEach items="${mundo.niveles}" var="nivel">
-						<tr>
-							<td width="35%"><span>${nivel.nombre}</span></td>
-							<!--Boton no terminado, falta el editar/>-->
-							<td width="10%"><stripes:link
-									beanclass="action.ConfigurarActionBean" event="editarNivel">
-									<stripes:param name="id" value="${m}" />
-									<image src="imagenes/editar.png" width="20" height="20">
-								</stripes:link></td>
-							<td width="10%"><stripes:link
-									beanclass="action.ConfigurarActionBean" event="eliminarNivel">
-									<stripes:param name="id" value="${m}" />
-									<image src="imagenes/eliminar1.PNG" width="20" height="20">
-								</stripes:link></td>
-						</tr>
-						<c:set var="m" value="${m+1}" />
-					</c:forEach>
-				</table>
-			</div>
-		</stripes:form>
-	</div>
+	
 </body>
 </html>
