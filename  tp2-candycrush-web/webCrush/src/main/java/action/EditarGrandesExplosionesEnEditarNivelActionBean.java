@@ -32,7 +32,7 @@ public class EditarGrandesExplosionesEnEditarNivelActionBean extends EditarObjet
 	}
 	
 	@HandlesEvent("agregarObjetivo")
-	public Resolution agregarObjetivoDesdeEditarNivel(){
+	public Resolution agregarObjetivo(){
 		this.getContext().getRequest().getSession().setAttribute("objetivo",null);
 		return new ForwardResolution(EditarNivelActionBean.class);
 	}
@@ -44,5 +44,6 @@ public class EditarGrandesExplosionesEnEditarNivelActionBean extends EditarObjet
 				
 		return new ForwardResolution(EditarNivelActionBean.class);
 	}
+
 	
 }

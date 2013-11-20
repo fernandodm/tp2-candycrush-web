@@ -162,7 +162,6 @@ public class ConfigurarActionBean extends BaseActionBean {
 	public Resolution editNivel(){
 		this.getContext().getRequest().getSession().setAttribute("mundoApp",this.getMundo());
 		this.getContext().getRequest().getSession().setAttribute("nivel",this.getNivel());
-		this.getContext().getRequest().getSession().setAttribute("idn",this.getId());
 		return new ForwardResolution(EditarNivelActionBean.class);
 	}
 	

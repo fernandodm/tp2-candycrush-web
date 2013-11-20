@@ -11,6 +11,9 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
+import Tp.CandyCrush.Dificultad;
+import Tp.CandyCrush.Nivel;
+import Tp.CandyCrush.Objetivo;
 import appModel.MundoAppModel;
 
 public class EditarNivelActionBean extends BaseActionBean {
@@ -18,6 +21,7 @@ public class EditarNivelActionBean extends BaseActionBean {
 	private Nivel nivel;
 	private Integer idn;
 	private MundoAppModel mundoApp;
+
 
 	public MundoAppModel getMundoApp() {
 		return mundoApp;
@@ -47,7 +51,10 @@ public class EditarNivelActionBean extends BaseActionBean {
 	public void iniciarEdicion(){
 		this.setMundoApp((MundoAppModel) this.getContext().getRequest().getSession().getAttribute("mundoApp"));
 		this.setNivel((Nivel) this.getContext().getRequest().getSession().getAttribute("nivel"));
-		this.setIdn((Integer) this.getContext().getRequest().getSession().getAttribute("idn"));
+	}
+	
+	public String nombreNivelViejo(){
+		return this.getNivel().getNombre();
 	}
 
 	@DefaultHandler
@@ -135,7 +142,7 @@ public class EditarNivelActionBean extends BaseActionBean {
 		        return new ForwardResolution(EditarNivelActionBean.class);
 			} else {
 			
-				this.getMundoApp().getNiveles().add(this.getNivel());
+			
 				
 				return new ForwardResolution(ConfigurarActionBean.class);
 			}
@@ -198,19 +205,14 @@ public class EditarNivelActionBean extends BaseActionBean {
 	
 	@HandlesEvent("eliminar") 
 	public Resolution eliminar() { 
-		this.getNivel().getObjetivos().remove(this.getObjetivo()); 
+		this.nivel.eliminarObjetivo(this.getObjetivo()); 
 		return this.view(); 
 		}
 	
 	
 
 	public Objetivo getObjetivo(){
-		
-		if(this.getNivel().getObjetivos().size() == 1){
-			return this.getNivel().getObjetivos().get(0);	
-		}
-		
-		return this.getNivel().getObjetivos().get(idn);
+		return this.nivel.getObjetivos().get(idn);
 	}
 
 	@HandlesEvent("editarObjetivo")
@@ -222,7 +224,8 @@ public class EditarNivelActionBean extends BaseActionBean {
 			return new ForwardResolution(EditarGrandesExplosionesEnEditarNivelActionBean.class);
 		}
 		
-		this.getContext().getRequest().getSession().setAttribute("objetivo",this.getObjetivo());
+		this.getContext().getRequest().getSession().setAttribute("objeti" +
+				"vo",this.getObjetivo());
 		return new ForwardResolution(EditarExplosionesPorColorEnEditarNivelActionBean.class);
 
 	}
