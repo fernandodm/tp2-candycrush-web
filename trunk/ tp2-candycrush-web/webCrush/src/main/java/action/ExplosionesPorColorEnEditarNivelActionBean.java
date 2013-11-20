@@ -6,6 +6,8 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
+import Tp.CandyCrush.ExplosionesPorColor;
+import Tp.CandyCrush.Nivel;
 
 
 public class ExplosionesPorColorEnEditarNivelActionBean extends ObjetivoActionBean{

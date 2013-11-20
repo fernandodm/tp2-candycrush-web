@@ -1,12 +1,13 @@
 package action;
 
-import Tp.CandyCrush.GrandesExplosiones;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.LifecycleStage;
+import Tp.CandyCrush.GrandesExplosiones;
+import Tp.CandyCrush.Nivel;
 
 
 

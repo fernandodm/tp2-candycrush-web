@@ -74,10 +74,11 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
         return new ForwardResolution("/grandesExplosiones.jsp");	
     }
 	
+	
 	@HandlesEvent("agregarObjetivo")
-	public Resolution agregarObjetivoDesdeEditarNivel(){
-		if(!this.getMundoApp().getObjetivo().puedeAgregarObjetivo()){
-			if(this.getMundoApp().getObjetivo().esExplosionesPorColor())
+	public Resolution agregarObjetivo(){
+		if(!this.getObjetivo().puedeAgregarObjetivo()){
+			if(this.getObjetivo().esExplosionesPorColor())
 				return this.validarExplosionesPorColor();
 			else
 				return this.validarGrandesExplosiones();
@@ -87,14 +88,13 @@ public abstract class ObjetivoActionBean extends BaseActionBean {
 			return new ForwardResolution(ConfigurarActionBean.class);
 		}
 	}
-	
-	@HandlesEvent("cancelarObjetivo")
+
+		@HandlesEvent("cancelarObjetivo")
 	public Resolution cancelarObjetivoDesdeEditarNivel(){
 		
 		setObjetivo(null);
 				
 		return new ForwardResolution(ConfigurarActionBean.class);
 	}
-	
 	
 }
