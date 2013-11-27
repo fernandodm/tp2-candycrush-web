@@ -12,24 +12,53 @@
   
   .ui-resizable-helper { border: 2px dotted #00F; }
   
-  .ui-dialog .ui-widget-header{background: red; color: black; font-family: arial; }
+  .ui-dialog .ui-widget-header{background: blue; color: white; font-family: arial; }
    
 </style>
   <script>
   
+  //Comentario
   $(function() {
 	    $( document ).tooltip();
 	  });
+  ////////////////////////////////////////
   
+  //tamaño de la ventana
   $(function() {
     $( "#resizable" ).resizable({
-      helper: "ui-resizable-helper"
+      helper: "ui-resizable-helper" //estilo del borde
     });
   });
+  ///////////////////////////////////////////
 
   //Ventanita dialog
-  $(function() {
-	  
+   function comparar(campo, comparador, html, idError) {
+   		if(campo == comparador){
+ 			$(idError).html(html);
+ 			return false;
+		}
+   		return true;
+    };
+    
+    function compararConCantidad(campo, comparador, html, idError, cant) {
+   		if(campo == comparador || campo < cant){
+ 			$(idError).html(html);
+ 			return false;
+		}
+   		return true;
+    };
+    
+   function borrarContenido(){
+	    $("#errorNombre").empty();
+		$("#errorDificultad").empty();
+		$("#errorFilas").empty();
+		$("#errorColumnas").empty();
+		$("#errorMovimientos").empty();
+		$("#errorPuntos").empty();
+		$("#errorObjetivo").empty();
+   };
+    
+  $(function() {  
    	$( "#dialog" ).dialog({
    		height:300,
    		width: 500,
@@ -48,19 +77,12 @@
    				$(this).dialog("close");
    			},
    		}
-   	});   	
-   	
+   	});  
+    
    	 $( "#opener" ).click(function() {
-        	
-    		$("#errorNombre").empty();
-    		$("#errorDificultad").empty();
-    		$("#errorFilas").empty();
-    		$("#errorColumnas").empty();
-    		$("#errorMovimientos").empty();
-    		$("#errorPuntos").empty();
-    		$("#errorObjetivo").empty();
+        	    		
+    		borrarContenido();
     	
-    	 	var ret = true;
     		var nombre = $("#nombre").val();
     		var dificultad = $("#dificultad").val();
     		var fila = $("#filas").val();
@@ -69,41 +91,23 @@
     		var puntos = $("#puntos").val();
    			var objetivo = $("#objetivo").val();
     		    		
-    		if(nombre == ""){
-     			$("#errorNombre").html('<h5>*ingrese el nombre del nivel</h5>');
-     			ret = false;
-    		}
-    		if(dificultad == []){
-     	  		$("#errorDificultad").html('<h5>*ingrese una dificultad</h5>');
-    			ret = false;
-    		}
-    		if(fila == ""){
-     			$("#errorFilas").html('<h5>*ingrese la cantidad de filas</h5>');
-     			ret = false;
-    		}
-    		if(columna == ""){
-     	  		$("#errorColumnas").html('<h5>>*ingrese la cantidad de columnas</h5>');
-    			ret = false;
-    		}
-    		if(movimiento == ""){
-     			$("#errorMovimientos").html('<h5>*ingrese movimientos mayor a 1</h5>');
-     			ret = false;
-    		}
-    		if(puntos == ""){
-     	  		$("#errorPuntos").html('<h5>*ingrese ingrese puntos mayor a 1</h5>');
-    			ret = false;
-    		}
-    		if(objetivo == null){
-     			$("#errorObjetivo").html('<h5>*ingrese al menos un objetivo</h5>');
-     			ret = false;
-    		}
+    		var ret1 = comparar(nombre, "", '<h5>*ingrese el nombre del nivel</h5>', "#errorNombre");
+    		var ret2 = comparar(dificultad, [], '<h5>*ingrese una dificultad</h5>', "#errorDificultad");
+    		var ret3 = compararConCantidad(fila, "", '<h5>*ingrese filas mayor a 3</h5>', "#errorFilas", 3);
+    		var ret4 = compararConCantidad(columna, "", '<h5>*ingrese columnas mayor a 3</h5>', "#errorColumnas", 3);
+    		var ret5 = compararConCantidad(movimiento, "", '<h5>*ingrese movimientos mayor a 0</h5>', "#errorMovimientos", 0);
+    		var ret6 = compararConCantidad(puntos, "", '<h5>*ingrese puntos mayor a 0</h5>', "#errorPuntos", 0);
+    		var ret7 = comparar(objetivo, null, '<h5>*ingrese al menos un objetivo</h5>', "#errorObjetivo");
     		
-    		//si ret es false abre la el dialog
-    		if(!ret){
+    		//si algun ret es falso abre el dialog
+    		var abrirDialog = ret1 && ret2 && ret3 && ret4 && ret5 && ret6 && ret7;
+    		
+    		if(! abrirDialog){
     			 $( "#dialog" ).dialog( "open" );
     		}
     		
-    		return ret;
+    		return abrirDialog;
+    		
      });
   });
   ///////////////////////////////////////////////////////	
@@ -119,21 +123,7 @@
 	$(function() {
   	  $( "#draggable" ).draggable();
  	 });
-	/////////////////////////////////
-	
-	
-	
-	$(function() {
-    function runEffect() {
-    	$( "#effect" ).effect( "bounce", options,500 );
-    };
- 
-  
-    $( "#button" ).click(function() {
-      runEffect();
-      return true;
-    });
-  });
+	/////////////////////////////////////////////
 	
   </script>
 
@@ -177,8 +167,9 @@
 				</table>
 			</div>
 
+
+
 			<!--TABLA BUSCAR  -->
-			
 			<div id="draggable" class="datagrid" style="margin-top: 30px">
 
 				<stripes:submit name="filtrarPorNombre" value="Filtrar"
@@ -203,6 +194,8 @@
 					<tbody>
 				</table>
 			</div>
+
+
 
 		<!-- CONFIGURACION -->
 		</stripes:form>
@@ -325,7 +318,6 @@
  	<h5 id="errorMovimientos"></h5>
  	<h5 id="errorPuntos"></h5>
  	<h5 id="errorObjetivo"></h5>
-
 </div>
 
 </body>
